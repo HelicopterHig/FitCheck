@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">fitness</string>
+    <string name="title_activity_bottom_navigation">bottom_navigation</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="continuebtn">SIGN IN</string>
+    <string name="error_lenght">Enter your name</string>
+    <string name="error_incorrect_number">Incorrect number</string>
+    <string name="sign_up"><u>Sign Up!</u></string>
+    <string name="sign_in"><u>Sign In!</u></string>
+</resources>

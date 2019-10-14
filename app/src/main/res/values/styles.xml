@@ -1,0 +1,71 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#212121</item>
+        <item name="colorPrimaryVariant">#000000</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#2962FF</item>
+        <item name="colorSecondaryVariant">#0039CB</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorError">#F44336</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#212121</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">#212121</item>
+        <item name="materialButtonStyle">@style/AppButton</item>
+    </style>
+    <color name="errorCl">#F44336</color>
+    <color name="background">#f6f7f9</color>
+    <color name="white">#FFFFFF</color>
+    <style name="AppButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">?attr/colorSecondary</item>
+    </style>
+    <style name="regTIL" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name ="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">#A1000000</item>
+        <item name="boxBackgroundMode">filled</item>
+        <item name="boxCornerRadiusBottomEnd">20dp</item>
+        <item name="boxCornerRadiusBottomStart">20dp</item>
+        <item name="boxCornerRadiusTopEnd">20dp</item>
+        <item name="boxCornerRadiusTopStart">20dp</item>
+        <item name="boxStrokeColor">#000000</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+    </style>
+    <style name="htDdTIL" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+        <item name ="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">#A1000000</item>
+        <item name="boxBackgroundMode">filled</item>
+        <item name="boxCornerRadiusBottomEnd">20dp</item>
+        <item name="boxCornerRadiusBottomStart">20dp</item>
+        <item name="boxCornerRadiusTopEnd">20dp</item>
+        <item name="boxCornerRadiusTopStart">20dp</item>
+        <item name="boxStrokeColor">#000000</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+    </style>
+    <style name="AppBarTheme" parent="Theme.MaterialComponents.Light">
+    <item name="colorPrimary">#212121</item>
+    <item name="colorPrimaryVariant">#000000</item>
+    <item name="colorOnPrimary">#FFFFFF</item>
+    <item name="colorSecondary">#2962FF</item>
+    <item name="colorSecondaryVariant">#0039CB</item>
+    <item name="colorOnSecondary">#FFFFFF</item>
+    <item name="colorError">#F44336</item>
+    <item name="colorOnError">#FFFFFF</item>
+    <item name="colorSurface">#FFFFFF</item>
+    <item name="colorOnSurface">#212121</item>
+    <item name="android:colorBackground">@color/background</item>
+    <item name="colorOnBackground">#212121</item>
+    <item name="materialButtonStyle">@style/AppButton</item>
+    </style>
+    <style name="htEt" parent="Widget.AppCompat.EditText">
+        <item name="android:colorControlNormal">#000000</item>
+        <item name="android:colorAccent">#000000</item>
+        <item name="android:strokeColor">#000000</item>
+    </style>
+</resources>

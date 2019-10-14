@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppBarTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:titleTextColor="@color/design_default_color_primary">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Health Test"
+            android:textColor="@color/design_default_color_primary"
+            android:textSize="24sp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/tV1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Tell Us about yourself!"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/tool"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/tV2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="ACTIVITY DURING THE DAY"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tV1" />
+
+
+    <TextView
+        android:id="@+id/tV3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="HEIGHT / WEIGHT / PRESSURE"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:gravity="center"
+        android:weightSum="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tV2"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn1"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:backgroundTint="@color/white"
+            android:checkable="true"
+            android:text="LOW"
+            android:textColor="@color/design_default_color_primary_variant"
+            android:textSize="18sp"
+            app:cornerRadius="@dimen/htCorners"
+            app:strokeWidth="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn2"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="36"
+            android:backgroundTint="@color/white"
+            android:checkable="true"
+            android:letterSpacing="0"
+            android:text="MEDIUM"
+            android:textColor="@color/design_default_color_primary_variant"
+            android:textSize="18sp"
+            app:cornerRadius="@dimen/htCorners"
+            app:strokeWidth="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn3"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:backgroundTint="@color/white"
+            android:checkable="true"
+            android:text="HIGH"
+            android:textColor="@color/design_default_color_primary_variant"
+            android:textSize="18sp"
+            app:cornerRadius="@dimen/htCorners"
+            app:strokeWidth="0dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tV3"
+        app:singleSelection="true">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hTIL"
+            style="@style/regTIL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="33"
+            android:background="@color/white"
+            android:textColorHint="#A1000000"
+            app:boxBackgroundMode="filled"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:counterMaxLength="3"
+            app:errorEnabled="true"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hET"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/roboto_bold"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textColor="@color/design_default_color_primary_variant"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/background"
+            android:fontFamily="@font/roboto_bold"
+            android:text="/"
+            android:textAlignment="center"
+            android:textColor="#4F525A"
+            android:textSize="36sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/wTIL"
+            style="@style/regTIL"
+            android:layout_width="0dp"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="33"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:textColorHint="#A1000000"
+            android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:boxBackgroundMode="filled"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/wET"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/roboto_bold"
+                android:singleLine="true"
+                android:textColor="@color/design_default_color_primary_variant"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/background"
+            android:fontFamily="@font/roboto_bold"
+            android:text="/"
+            android:textAlignment="center"
+            android:textColor="#4F525A"
+            android:textSize="36sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pTIL"
+            style="@style/regTIL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="33"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:textColorHint="#A1000000"
+            android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:boxBackgroundMode="filled"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pET"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/roboto_bold"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textColor="@color/design_default_color_primary_variant"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tV4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="THE GOAL OF YOUR TRAININGS"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout3" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/q1Til"
+        style="@style/htDdTIL"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:alwaysDrawnWithCache="false"
+        android:measureWithLargestChild="false"
+        android:textColorHint="#A1000000"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:counterEnabled="false"
+        app:errorEnabled="false"
+        app:hintAnimationEnabled="true"
+        app:hintEnabled="true"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tV4"
+        app:passwordToggleEnabled="false">
+
+        <AutoCompleteTextView
+            android:id="@+id/filled_exposed_dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColor="@color/design_default_color_primary_variant"
+            android:textSize="12sp"
+            tools:visibility="visible" />
+    </com.google.android.material.textfield.TextInputLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
