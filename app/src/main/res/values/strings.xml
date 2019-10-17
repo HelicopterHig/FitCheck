@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">fitness</string>
+    <string name="app_name">FitCheck</string>
     <string name="title_activity_bottom_navigation">bottom_navigation</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -9,4 +9,6 @@
     <string name="error_incorrect_number">Incorrect number</string>
     <string name="sign_up"><u>Sign Up!</u></string>
     <string name="sign_in"><u>Sign In!</u></string>
+    <string name="button_color">button_color</string>
+    <string name="new_to_this_experience">New to this Experience?</string>
 </resources>
