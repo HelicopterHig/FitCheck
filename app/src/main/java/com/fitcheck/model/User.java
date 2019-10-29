@@ -8,6 +8,18 @@ public class User {
     private String newPass;
     private String token;
 
+    public User(String email, String pass) {
+        this.pass = pass;
+        this.email = email;
+    }
+
+    public User(String name, String pass, String email, String numbr) {
+        this.name = name;
+        this.pass = pass;
+        this.email = email;
+        this.numbr = numbr;
+    }
+
     public String getName() {
         return name;
     }
