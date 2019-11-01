@@ -1,11 +1,10 @@
 package com.fitcheck.ui;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,10 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.fitcheck.LocalDataBase.DatabaseHandler;
+import com.fitcheck.LocalDataBase.User;
 import com.fitcheck.R;
-import com.fitcheck.model.User;
+import com.fitcheck.model.User_in;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -25,8 +26,7 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import rx.subscriptions.CompositeSubscription;
+import java.util.List;
 
 import static com.fitcheck.utils.Validation.validateEmail;
 import static com.fitcheck.utils.Validation.validateFields;
@@ -34,35 +34,20 @@ import static com.fitcheck.utils.Validation.validateFields;
 public class LoginFragment extends Fragment {
     public static String server_name = "94.141.168.185:8008";
     public static final String TAG = LoginFragment.class.getSimpleName();
-    protected String name, second_name, email, pass, birthday_date, access;
-    public int user_id, icon_id;
+    protected String name, second_name, email, pass, gender;
+    public int user_id, phone_num;
 
-    private static String TAG_USER = "user";
+    private static String TAG_ID = "id";
     private static String TAG_NAME = "name";
-    private static String TAG_SECOND_NAME = "second_name";
+    private static String TAG_SECOND_NAME = "surname";
     private static String TAG_EMAIL = "email";
     private static String TAG_PASSWORD = "password";
-    private static String TAG_BIRTHDAY_DATE = "birthday_date";
-    private static String TAG_ICON_ID = "icon_id";
-    private static String TAG_USER_ID = "id";
-    private static String TAG_ACCESS = "accessToken";
+    private static String TAG_PHONE = "phone_num";
+    private static String TAG_GENDER = "gender";
     //это для бд которой нет))
     //для таблицы user_token
-    protected String refresh_id, refresh_user_id, refreshTokensMap;
 
-    private  static String TAG_REFRESH_USER = "user";
-    private static String TAG_REFRESH_ID = "id";
-    private static String TAG_REFRESH_USER_ID = "user_id";
-    private static String TAG_REFRESH_REFRESHTOKENSMAP = "refreshTokensMap";
-
-    private static String TAG_GROUP = "groups";
-    private static String TAG_ID = "id";
-    private static String TAG_NAME_GROUP = "name_group";
-    private static String TAG_ADMIN_USER_ID = "admin_user_id";
-    private static String TAG_GROUP_ICON_ID = "group_icon_id";
-
-    public String name_group_user;
-    public int id, admin_user_id, group_icon_id;
+    DatabaseHandler db;
     TextInputEditText nameET;
     TextInputEditText nmbrET;
     MaterialButton signinBtn;
@@ -70,8 +55,10 @@ public class LoginFragment extends Fragment {
     TextInputLayout nmbrTIL;
     TextView frgtBtn;
     TextView signUpBtn;
-    User user;
+    User_in user;
     private static final String EMPTY_STRING = "";
+
+    List<User> user_local;
 
     @Nullable
     @Override
@@ -79,6 +66,13 @@ public class LoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         initViews(view);
         return view;
+    }
+
+    public void onAttach(Activity activity) {
+
+        super.onAttach(activity);
+        db = new DatabaseHandler(activity);
+
     }
 
     private void initViews(View v) {
@@ -115,7 +109,7 @@ public class LoginFragment extends Fragment {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             TestFragment fragment = new TestFragment();
 
-            user = new User(email,pass);
+            user = new User_in(email,pass);
             try {
                 new SendLogin().execute();
             }catch (Exception e){
@@ -167,24 +161,31 @@ public class LoginFragment extends Fragment {
 
                     String data = convertStreamToString(stream);
 
-                    JSONObject jsonObject = new JSONObject(data);
-
-                    JSONArray user = jsonObject.getJSONArray(TAG_USER);
+                    JSONArray user = new JSONArray(data);
 
                     for (int i = 0; i < 1; i++) {
                         JSONObject schedule = user.getJSONObject(i);
 
-                        user_id = Integer.parseInt(schedule.getString(TAG_USER_ID));
+                        user_id = Integer.parseInt(schedule.getString(TAG_ID));
                         name = schedule.getString(TAG_NAME);
                         second_name = schedule.getString(TAG_SECOND_NAME);
-                        pass = schedule.getString(TAG_PASSWORD);
-                        birthday_date = schedule.getString(TAG_BIRTHDAY_DATE);
-                        icon_id = Integer.parseInt(schedule.getString(TAG_ICON_ID));
                         email = schedule.getString(TAG_EMAIL);
-                        access = schedule.getString(TAG_ACCESS);
+                        pass = schedule.getString(TAG_PASSWORD);
+                        phone_num = Integer.parseInt(schedule.getString(TAG_PHONE));
+                        gender = schedule.getString(TAG_GENDER);
+
+                        int is = 0;
                     }
 
+                    System.out.println("Inserting user ..");
 
+                    db.addUser(new User(user_id, name, second_name, email, pass, phone_num, 1, gender, 1));
+
+                    user_local = db.getAllUser();
+                    for (User us : user_local){
+                        String log = "" + us.get_id() + " " + us.get_name() + " " + us.get_second_name() + " " + us.get_email() + " " + us.get_password() + " " + us.get_phone_number() + " " + us.get_active() + " " + us.get_gender() + " " + us.getTrainer_id();
+                        System.out.println(log);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

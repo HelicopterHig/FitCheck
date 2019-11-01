@@ -2,29 +2,25 @@ package com.fitcheck.ui;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.fitcheck.R;
-import com.fitcheck.model.User;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import rx.subscriptions.CompositeSubscription;
 
 import static com.fitcheck.utils.Validation.validateEmail;
 import static com.fitcheck.utils.Validation.validateFields;
@@ -129,8 +125,8 @@ public class RegisterFragment extends Fragment {
     }
     private String getType(){
         if (trainer.isChecked())
-            return "trainer";
-        else return "user";
+            return "http://" + server_name + "/trainer?name="+name+ "&surname=" + surname+"&email="+email+"&password=" + pass +"&phone_num="+number+"&gender="+getGender();
+        else return "http://" + server_name + "/user?name="+name+ "&surname=" + surname+"&email="+email+"&password=" + pass + "&phone_num="+number+"&active=1&gender="+getGender()+"&trainer_id=1";
     }
 
     private void signIn() {
@@ -153,9 +149,10 @@ public class RegisterFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
+                String myURL = getType();
 
-                String myURL = "http://" + server_name + "/" +getType()+"?name="+name+ "&surname=" + surname+"&email="+email+"&phone_num="+number+"&gender="+getGender();
-
+                InputStream is;
+                byte[] data = null;
                 try {
                     URL url = new URL(myURL);
 
@@ -163,9 +160,29 @@ public class RegisterFragment extends Fragment {
                     conn.setReadTimeout(10000);
                     conn.setConnectTimeout(15000);
                     conn.setRequestMethod("GET");
-                    conn.setDoInput(true);
 
                     conn.connect();
+
+                    int responseCode = conn.getResponseCode();
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                    if (responseCode == 200){
+                        is = conn.getInputStream();
+
+                        byte[] buffer = new byte[8192];
+                        int bytesRead;
+
+                        while ((bytesRead = is.read(buffer)) != -1){
+                            baos.write(buffer, 0, bytesRead);
+                        }
+
+                        data = baos.toByteArray();
+
+                        String resultString = new String(data, "UTF-8");
+                    }else {
+                        conn.disconnect();
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();

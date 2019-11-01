@@ -1,6 +1,6 @@
 package com.fitcheck.model;
 
-public class User {
+public class User_in {
    private String name;
    private String numbr;
     private String pass;
@@ -8,12 +8,12 @@ public class User {
     private String newPass;
     private String token;
 
-    public User(String email, String pass) {
+    public User_in(String email, String pass) {
         this.pass = pass;
         this.email = email;
     }
 
-    public User(String name, String pass, String email, String numbr) {
+    public User_in(String name, String pass, String email, String numbr) {
         this.name = name;
         this.pass = pass;
         this.email = email;
