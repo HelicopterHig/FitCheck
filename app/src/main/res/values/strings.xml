@@ -11,4 +11,8 @@
     <string name="sign_in"><u>Sign In!</u></string>
     <string name="button_color">button_color</string>
     <string name="new_to_this_experience">New to this Experience?</string>
+    <string name="title_entries">ENTRIES</string>
+    <string name="title_statistic">STATISTIC</string>
+    <string name="title_calendar">CALENDAR</string>
+    <string name="title_more">MORE</string>
 </resources>

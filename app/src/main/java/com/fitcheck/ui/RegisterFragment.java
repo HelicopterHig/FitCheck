@@ -67,11 +67,11 @@ public class RegisterFragment extends Fragment {
 
     private void register() {
         setError();
-         name = nameET.getText().toString();
-         email = emailET.getText().toString();
-         number = numberET.getText().toString();
-         pass = passET.getText().toString();
-         surname = surnameET.getText().toString();
+        name = nameET.getText().toString();
+        email = emailET.getText().toString();
+        number = numberET.getText().toString();
+        pass = passET.getText().toString();
+        surname = surnameET.getText().toString();
 
         int err = 0;
         if (!validateFields(name)) {

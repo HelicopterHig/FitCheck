@@ -1,13 +1,16 @@
 package com.fitcheck.ui;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 
+import com.fitcheck.MainMenuActivity;
 import com.fitcheck.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -37,6 +40,15 @@ public class TestFragment extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_test, container, false);
         mSubscriptions = new CompositeSubscription();
         initViews(view);
+        Button  counti_btn = (Button) view.findViewById(R.id.counti_btn);
+        counti_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), MainMenuActivity.class);
+                in.putExtra("bull", "bull shit");
+                startActivity(in);
+            }
+        });
 
         //initSharedPreferences();
         return view;
@@ -70,11 +82,11 @@ public class TestFragment extends Fragment  {
         @Override
         public void onCheckedChanged(MaterialButton button, boolean isChecked) {
             unCheck() ;
-        if (isChecked){
-              //unCheck();
-            button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        }
-        else button.setBackgroundColor(getResources().getColor(R.color.white));
+            if (isChecked){
+                //unCheck();
+                button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            }
+            else button.setBackgroundColor(getResources().getColor(R.color.white));
         }
     };
 }

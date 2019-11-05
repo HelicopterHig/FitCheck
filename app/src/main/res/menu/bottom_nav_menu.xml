@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_entries"
+        android:icon="@drawable/ic_featured_play_list_black_24dp"
+        android:title="@string/title_entries" />
+
+    <item
+        android:id="@+id/navigation_statistic"
+        android:icon="@drawable/ic_equalizer_black_24dp"
+        android:title="@string/title_statistic" />
+
+    <item
+        android:id="@+id/navigation_calendar"
+        android:icon="@drawable/ic_bubble_chart_black_24dp"
+
+        android:title="@string/title_calendar" />
+    <item
+        android:id="@+id/navigation_more"
+        android:icon="@drawable/ic_more_horiz_black_24dp"
+        android:title="@string/title_more" />
+
+</menu>

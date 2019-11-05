@@ -6,7 +6,7 @@
         <item name="colorPrimaryVariant">#000000</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorSecondary">#2f3281</item>
-        <item name="colorSecondaryVariant">#0039CB</item>
+        <item name="colorSecondaryVariant">#CBCBCB</item>
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorError">#F44336</item>
         <item name="colorOnError">#FFFFFF</item>
@@ -54,7 +54,7 @@
     <item name="colorPrimaryVariant">#000000</item>
     <item name="colorOnPrimary">#FFFFFF</item>
     <item name="colorSecondary">#FFFFFF</item>
-    <item name="colorSecondaryVariant">#0039CB</item>
+    <item name="colorSecondaryVariant">#CBCBCB</item>
     <item name="colorOnSecondary">#FFFFFF</item>
     <item name="colorError">#F44336</item>
     <item name="colorOnError">#FFFFFF</item>
@@ -64,10 +64,34 @@
     <item name="colorOnBackground">#212121</item>
     <item name="materialButtonStyle">@style/AppButton</item>
     </style>
-    <style name="htEt" parent="Widget.AppCompat.EditText">
+    <!--style name="htEt" parent="Widget.AppCompat.EditText">
         <item name="android:colorControlNormal">#000000</item>
         <item name="android:colorAccent">#000000</item>
         <item name="android:strokeColor">#000000</item>
+    </style-->
+
+
+    <style name="AppTheme1" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="button_style">
+        <item name="android:background">@drawable/rectangle_rounded_all</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/active_tab_color</item>
+        <item name="colorPrimary">@color/active_tab_color</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/active_tab_color</item>
+        <!--item name="android:fontFamily"></item-->
+    </style>
 </resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_entries"
+    >
+
+    <fragment
+        android:id="@+id/navigation_entries"
+        android:name="com.fitcheck.ui.entries.EntriesFragment"
+        android:label="@string/title_entries"
+
+
+        tools:layout="@layout/fragment_entries" />
+
+    <fragment
+        android:id="@+id/navigation_statistic"
+        android:name="com.fitcheck.ui.statistic.StatisticFragment"
+        android:label="@string/title_statistic"
+        tools:layout="@layout/fragment_statistic" />
+
+    <fragment
+        android:id="@+id/navigation_calendar"
+        android:name="com.fitcheck.ui.calendar.CalendarFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_calendar"
+        />
+    <fragment
+        android:id="@+id/navigation_more"
+        android:name="com.fitcheck.ui.more.MoreFragment"
+        android:label="@string/title_more"
+        tools:layout="@layout/fragment_more" />
+</navigation>
