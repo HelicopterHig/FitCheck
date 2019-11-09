@@ -3,6 +3,7 @@ package com.fitcheck.ui;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 
 import com.fitcheck.LocalDataBase.DatabaseHandler;
 import com.fitcheck.LocalDataBase.User;
+import com.fitcheck.MainMenuActivity;
 import com.fitcheck.R;
 import com.fitcheck.model.User_in;
 import com.google.android.material.button.MaterialButton;
@@ -90,8 +92,8 @@ public class LoginFragment extends Fragment {
 
     private void login() {
         setError();
-        email = nameET.getText().toString();
-        pass = nmbrET.getText().toString();
+        email = nameET.getText().toString().replaceAll("\\s+","");
+        pass = nmbrET.getText().toString().replaceAll("\\s+","");
         int err = 0;
         if (!validateEmail(email)) {
 
@@ -106,19 +108,14 @@ public class LoginFragment extends Fragment {
         }
 
         if (err == 0) {
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            TestFragment fragment = new TestFragment();
-
+            Intent intent = new Intent(getActivity(), MainMenuActivity.class);
             user = new User_in(email,pass);
             try {
                 new SendLogin().execute();
             }catch (Exception e){
                 e.printStackTrace();
             }
-            ft.replace(R.id.fragmentFrame, fragment, TestFragment.TAG).addToBackStack(TAG);
-            ft.commit();
-            //loginProcess(email,password);
-            //mProgressBar.setVisibility(View.VISIBLE);
+            startActivity(intent);
         } else {
             //showSnackBarMessage("Enter Valid Details !");
         }

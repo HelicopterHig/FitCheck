@@ -99,14 +99,14 @@ public class RegisterFragment extends Fragment {
 
         if (err == 0) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            TestFragment fragment = new TestFragment();
+            LoginFragment fragment = new LoginFragment();
 
             try {
                 new Reg().execute();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            ft.replace(R.id.fragmentFrame, fragment, TestFragment.TAG).addToBackStack(TAG);
+            ft.replace(R.id.fragmentFrame, fragment, LoginFragment.TAG).addToBackStack(TAG);
             ft.commit();
 
             //mProgressbar.setVisibility(View.VISIBLE);
