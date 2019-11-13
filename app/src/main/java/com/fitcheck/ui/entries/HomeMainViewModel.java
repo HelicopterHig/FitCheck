@@ -6,11 +6,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class EntriesViewModel extends ViewModel {
+public class HomeMainViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public EntriesViewModel() {
+    public HomeMainViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is entries fragment");
     }
