@@ -18,6 +18,7 @@ import com.fitcheck.LocalDataBase.User;
 import com.fitcheck.MainMenuActivity;
 import com.fitcheck.R;
 import com.fitcheck.model.User_in;
+import com.fitcheck.ui.map.MapActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -52,7 +53,7 @@ public class LoginFragment extends Fragment {
     DatabaseHandler db;
     TextInputEditText nameET;
     TextInputEditText nmbrET;
-    MaterialButton signinBtn;
+    MaterialButton signinBtn,mapBtn;
     TextInputLayout nameTIL;
     TextInputLayout nmbrTIL;
     TextView frgtBtn;
@@ -88,6 +89,12 @@ public class LoginFragment extends Fragment {
         signUpBtn.setText(R.string.sign_up);
         signUpBtn.setOnClickListener(view -> signUp());
         signinBtn.setOnClickListener(v1 -> login());
+        mapBtn = v.findViewById(R.id.mapBtn);
+        mapBtn.setOnClickListener(v1 -> {
+            Intent  intent = new Intent(getActivity(), MapActivity.class);
+            startActivity(intent);
+        });
+
     }
 
     private void login() {
