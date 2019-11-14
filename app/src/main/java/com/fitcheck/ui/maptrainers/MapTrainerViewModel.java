@@ -1,18 +1,16 @@
-package com.fitcheck.ui.statistic;
-
-
+package com.fitcheck.ui.maptrainers;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class StatisticViewModel extends ViewModel {
+public class MapTrainerViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public StatisticViewModel() {
+    public MapTrainerViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("NO DATA");
+        mText.setValue("This is maptrainer fragment");
     }
 
     public LiveData<String> getText() {
