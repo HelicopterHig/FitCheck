@@ -4,6 +4,8 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import com.google.android.libraries.maps.OnMapReadyCallback;
 import com.google.android.libraries.maps.SupportMapFragment;
 import com.google.android.libraries.maps.model.CameraPosition;
 import com.google.android.libraries.maps.model.LatLng;
+import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -52,18 +55,31 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
             mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
         setContentView(R.layout.activity_map);
+        Places.initialize(getApplicationContext(),"AIzaSyBbA62K5RTgPWcZMSjuawcx-GtubzbYoJc");
+        Button showBtn = (Button) findViewById(R.id.button2);
+
+        View.OnClickListener oclBtnOk = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPlaces();
+            }
+        };
+        showBtn.setOnClickListener(oclBtnOk);
+
         // Construct a GeoDataClient.
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (mMap != null) {
@@ -82,6 +98,29 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         // Get the current location of the device and set the position of the map.
         getDeviceLocation();
+        //showPlaces();
+    }
+    public void showPlaces(){
+        Object dataTransfer[] = new Object[2];
+        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
+        if(mLastKnownLocation!=null) {
+            String url = getUrl(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
+            dataTransfer[0] = mMap;
+            dataTransfer[1] = url;
+            getNearbyPlacesData.execute(dataTransfer);
+        }}
+    private String getUrl(double latitude , double longitude)
+    {
+        StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googlePlaceUrl.append("location="+latitude+","+longitude);
+        googlePlaceUrl.append("&radius=1000");
+        googlePlaceUrl.append("&type=gym");
+        googlePlaceUrl.append("&sensor=true");
+        googlePlaceUrl.append("&key="+"AIzaSyBbA62K5RTgPWcZMSjuawcx-GtubzbYoJc");
+
+        Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
+
+        return googlePlaceUrl.toString();
     }
     private void getLocationPermission() {
         /*
@@ -133,7 +172,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Log.e("Exception: %s", e.getMessage());
         }
     }
-    private void getDeviceLocation() {
+    public void getDeviceLocation() {
         /*
          * Get the best and most recent location of the device, which may be null in rare
          * cases when a location is not available.
@@ -144,7 +183,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 locationResult.addOnCompleteListener(this, new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
-                        if (task.isSuccessful()) {
+                        if (task.isSuccessful()&& task.getResult() != null) {
                             // Set the map's camera position to the current location of the device.
                             mLastKnownLocation = (Location) task.getResult();
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
