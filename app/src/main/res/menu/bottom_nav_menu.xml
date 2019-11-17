@@ -5,7 +5,8 @@
         android:id="@+id/navigation_home_main"
         android:icon="@drawable/ic_featured_play_list_black_24dp"
         android:textStyle="bold"
-        android:title="@string/title_home_main" />
+        android:title="@string/title_home_main"
+        />
 
     <item
         android:id="@+id/navigation_statistic"
@@ -20,15 +21,11 @@
         android:title="@string/title_calendar" />
 
     <item
-        android:id="@+id/navigation_map_trainer"
+        android:id="@+id/navigation_more"
         android:icon="@drawable/ic_more_horiz_black_24dp"
         android:textStyle="bold"
         android:title="@string/title_map_trainer" />
 
-    <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/ic_more_horiz_black_24dp"
-        android:textStyle="bold"
-        android:title="@string/title_settings" />
+
 
 </menu>

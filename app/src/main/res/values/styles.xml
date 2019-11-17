@@ -2,7 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">#212121</item>
         <item name="colorPrimaryVariant">#000000</item>
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorSecondary">#2f3281</item>
@@ -15,6 +14,13 @@
         <item name="android:colorBackground">@color/background</item>
         <item name="colorOnBackground">#212121</item>
         <item name="materialButtonStyle">@style/AppButton</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowLightNavigationBar">true</item>
+
 
     </style>
     <color name="errorCl">#F44336</color>
@@ -76,6 +82,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="button_style">
@@ -93,5 +102,19 @@
     <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/active_tab_color</item>
         <!--item name="android:fontFamily"></item-->
+    </style>
+
+    <style name="Theme1" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+
+
+    </style>
+    <style name="ThemeForMap" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
     </style>
 </resources>

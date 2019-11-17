@@ -10,30 +10,30 @@
         android:id="@+id/navigation_home_main"
         android:name="com.fitcheck.ui.entries.HomeMainFragment"
         android:label="@string/title_home_main"
+        android:fontFamily="@font/roboto"
         tools:layout="@layout/fragment_home_main" />
 
     <fragment
         android:id="@+id/navigation_statistic"
         android:name="com.fitcheck.ui.statistic.StatisticFragment"
         android:label="@string/title_statistic"
+        android:fontFamily="@font/roboto"
         tools:layout="@layout/fragment_statistic" />
 
     <fragment
         android:id="@+id/navigation_calendar"
         android:name="com.fitcheck.ui.calendar.CalendarFragment"
         android:label="@string/title_calendar"
+        android:fontFamily="@font/roboto"
         tools:layout="@layout/fragment_calendar" />
 
     <fragment
-        android:id="@+id/navigation_map_trainer"
-        android:name="com.fitcheck.ui.more.SettingsFragment"
+        android:id="@+id/navigation_more"
+        android:name="com.fitcheck.ui.more.MoreFragment"
         android:label="@string/title_map_trainer"
-        tools:layout="@layout/fragment_map_trainer" />
+        android:fontFamily="@font/roboto"
+        tools:layout="@layout/fragment_more" />
 
-    <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.fitcheck.ui.more.SettingsFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
+
 
 </navigation>

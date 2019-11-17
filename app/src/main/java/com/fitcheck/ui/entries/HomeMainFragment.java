@@ -4,6 +4,8 @@ package com.fitcheck.ui.entries;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,6 +18,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
 import com.fitcheck.LocalDataBase.DatabaseHandler;
 import com.fitcheck.R;
 import com.fitcheck.ui.elementAdapter.ElementExercise;
@@ -39,12 +44,7 @@ public class HomeMainFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home_main, container, false);
         final TextView textView = root.findViewById(R.id.text_home_main);
 
-        entriesViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
 
         buildRecyclerViewGame(root);
 
@@ -74,4 +74,6 @@ public class HomeMainFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(gameAdapter);
     }
+
+
 }

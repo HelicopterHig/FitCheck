@@ -1,9 +1,11 @@
 package com.fitcheck.ui.map;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.fitcheck.MainMenuActivity;
+import com.fitcheck.QrCodeActivity;
 import com.fitcheck.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -51,6 +55,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     // Keys for storing activity state.
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,6 +209,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Log.e("Exception: %s", e.getMessage());
         }
     }
+
+
 
 
 }

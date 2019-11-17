@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.fitcheck">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permisson.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera.FOCUS_MODE_AUTO" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,11 +27,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBbA62K5RTgPWcZMSjuawcx-GtubzbYoJc" />
-        <activity android:name=".ui.map.MapActivity"></activity>
+
+        <activity android:name=".ui.map.MapActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,11 +44,17 @@
         <activity
             android:name=".MainMenuActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme1"></activity>
+            android:theme="@style/AppTheme1" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <activity android:name=".QrCodeActivity">
+
+
+        </activity>
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
+
     </application>
 
 </manifest>

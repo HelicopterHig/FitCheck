@@ -16,4 +16,6 @@
     <string name="title_calendar">CALENDAR</string>
     <string name="title_settings">SETTINGS</string>
     <string name="title_map_trainer">MORE</string>
+    <string name="result_text">Please focus camera to QR code</string>
+    <string name="load_places">Load Places</string>
 </resources>

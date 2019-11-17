@@ -53,7 +53,7 @@ public class LoginFragment extends Fragment {
     DatabaseHandler db;
     TextInputEditText nameET;
     TextInputEditText nmbrET;
-    MaterialButton signinBtn,mapBtn;
+    MaterialButton signinBtn;//mapBtn;
     TextInputLayout nameTIL;
     TextInputLayout nmbrTIL;
     TextView frgtBtn;
@@ -68,7 +68,9 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         initViews(view);
+
         return view;
+
     }
 
     public void onAttach(Activity activity) {
@@ -89,11 +91,11 @@ public class LoginFragment extends Fragment {
         signUpBtn.setText(R.string.sign_up);
         signUpBtn.setOnClickListener(view -> signUp());
         signinBtn.setOnClickListener(v1 -> login());
-        mapBtn = v.findViewById(R.id.mapBtn);
-        mapBtn.setOnClickListener(v1 -> {
+      //  mapBtn = v.findViewById(R.id.mapBtn);
+       /* mapBtn.setOnClickListener(v1 -> {
             Intent  intent = new Intent(getActivity(), MapActivity.class);
             startActivity(intent);
-        });
+        });*/
 
     }
 

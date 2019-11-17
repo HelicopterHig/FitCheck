@@ -1,6 +1,9 @@
 package com.fitcheck;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
             loadFragment();
         }
+
     }
 
     private void loadFragment() {
@@ -39,6 +43,39 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack();
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(MainActivity.class.getName(), "onResume()");
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(MainActivity.class.getName(), "onStart()");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(MainActivity.class.getName(), "onPause()");
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(MainActivity.class.getName(), "onRestart()");
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(MainActivity.class.getName(), "onStop()");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(MainActivity.class.getName(), "onDestroy()");
     }
 }
 

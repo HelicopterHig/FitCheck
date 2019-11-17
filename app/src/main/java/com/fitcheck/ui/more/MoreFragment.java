@@ -16,15 +16,15 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.fitcheck.R;
 
-public class SettingsFragment extends Fragment {
+public class MoreFragment extends Fragment {
 
-    private SettingsViewModel moreViewModel;
+    private MoreViewModel moreViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         moreViewModel =
-                ViewModelProviders.of(this).get(SettingsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_settings, container, false);
+                ViewModelProviders.of(this).get(MoreViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_more, container, false);
         final TextView textView = root.findViewById(R.id.text_more);
         moreViewModel.getText().observe(this, new Observer<String>() {
             @Override
