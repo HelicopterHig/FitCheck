@@ -53,6 +53,8 @@
 
 
         </activity>
+
+        <activity android:name=".ui.task.CreateTaskActivity"></activity>
         <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
 
     </application>
