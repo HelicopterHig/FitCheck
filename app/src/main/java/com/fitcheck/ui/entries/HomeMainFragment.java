@@ -26,7 +26,10 @@ import com.fitcheck.R;
 import com.fitcheck.ui.elementAdapter.ElementExercise;
 import com.fitcheck.ui.elementAdapter.ExerciseAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import okio.InflaterSource;
 
@@ -43,9 +46,10 @@ public class HomeMainFragment extends Fragment {
         entriesViewModel = ViewModelProviders.of(this).get(HomeMainViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home_main, container, false);
         final TextView textView = root.findViewById(R.id.text_home_main);
-
-
-
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM");
+        String formattedDate = df.format(c);
+        textView.setText("Today is "+formattedDate);
         buildRecyclerViewGame(root);
 
         return root;

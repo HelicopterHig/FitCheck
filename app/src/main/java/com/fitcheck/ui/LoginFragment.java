@@ -117,14 +117,14 @@ public class LoginFragment extends Fragment {
         }
 
         if (err == 0) {
-            Intent intent = new Intent(getActivity(), MainMenuActivity.class);
+
             user = new User_in(email,pass);
             try {
                 new SendLogin().execute();
             }catch (Exception e){
                 e.printStackTrace();
             }
-            startActivity(intent);
+
         } else {
             //showSnackBarMessage("Enter Valid Details !");
         }
@@ -191,13 +191,17 @@ public class LoginFragment extends Fragment {
                     for (User us : user_local){
                         String log = "" + us.get_id() + " " + us.get_name() + " " + us.get_second_name() + " " + us.get_email() + " " + us.get_password() + " " + us.get_phone_number() + " " + us.get_active() + " " + us.get_gender() + " " + us.getTrainer_id();
                         System.out.println(log);
+
                     }
+                    Intent intent = new Intent(getActivity(), MainMenuActivity.class);
+                    startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
             return null;
         }
 
