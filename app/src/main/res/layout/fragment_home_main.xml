@@ -167,6 +167,7 @@
         android:layout_height="wrap_content"
         android:text="THU"
         android:textColor="#000000"
+        android:fontFamily="@font/roboto_thin"
         app:layout_constraintBottom_toTopOf="@+id/main_date_num_5"
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline12"
@@ -337,7 +338,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.04" />
+        app:layout_constraintGuide_percent="0.02" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
