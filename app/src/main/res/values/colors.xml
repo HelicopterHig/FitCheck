@@ -10,4 +10,5 @@
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
     <color name="active_tab_color">#2f3281</color>
+    <color name="color_more">#37474f</color>
 </resources>
