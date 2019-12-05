@@ -9,6 +9,8 @@ import com.google.android.libraries.maps.GoogleMap;
 import com.google.android.libraries.maps.model.BitmapDescriptorFactory;
 import com.google.android.libraries.maps.model.LatLng;
 import com.google.android.libraries.maps.model.MarkerOptions;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
 import java.io.IOException;
 import java.util.HashMap;

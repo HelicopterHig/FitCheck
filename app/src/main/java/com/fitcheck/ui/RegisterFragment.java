@@ -98,16 +98,14 @@ public class RegisterFragment extends Fragment {
         }
 
         if (err == 0) {
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            LoginFragment fragment = new LoginFragment();
+
 
             try {
                 new Reg().execute();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            ft.replace(R.id.fragmentFrame, fragment, LoginFragment.TAG).addToBackStack(TAG);
-            ft.commit();
+
 
             //mProgressbar.setVisibility(View.VISIBLE);
             //registerProcess(user);
@@ -180,6 +178,10 @@ public class RegisterFragment extends Fragment {
                         data = baos.toByteArray();
 
                         String resultString = new String(data, "UTF-8");
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        LoginFragment fragment = new LoginFragment();
+                        ft.replace(R.id.fragmentFrame, fragment, LoginFragment.TAG).addToBackStack(TAG);
+                        ft.commit();
                     }else {
                         conn.disconnect();
                     }

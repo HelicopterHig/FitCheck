@@ -15,7 +15,6 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,11 +24,8 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-import com.jaeger.library.StatusBarUtil;
 
 import java.io.IOException;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class QrCodeActivity extends AppCompatActivity {
 

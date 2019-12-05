@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import com.fitcheck.MainMenuActivity;
 import com.fitcheck.QrCodeActivity;
 import com.fitcheck.R;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +30,7 @@ import com.google.android.libraries.maps.model.CameraPosition;
 import com.google.android.libraries.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
+
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
     private static final String TAG = MapActivity.class.getSimpleName();
@@ -70,6 +72,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         setContentView(R.layout.activity_map);
         Places.initialize(getApplicationContext(),"AIzaSyBbA62K5RTgPWcZMSjuawcx-GtubzbYoJc");
+        mPlacesClient = Places.createClient(this);
         Button showBtn = (Button) findViewById(R.id.button2);
 
         View.OnClickListener oclBtnOk = new View.OnClickListener() {
@@ -97,7 +100,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
     public void onMapReady(GoogleMap map) {
         mMap = map;
-
         // Do other setup activities here too, as described elsewhere in this tutorial.
         getLocationPermission();
         // Turn on the My Location layer and the related control on the map.
@@ -107,6 +109,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         getDeviceLocation();
         //showPlaces();
     }
+
     public void showPlaces(){
         Object dataTransfer[] = new Object[2];
         GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
