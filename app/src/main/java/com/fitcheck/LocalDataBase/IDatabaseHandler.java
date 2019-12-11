@@ -27,6 +27,47 @@ interface IDatabaseHandler {
 
     //методы для упражнений
     public void addUserTask(UserTasks userTasks);
+    public UserTasks getUserTasks(int id);
     public List<UserTasks> getAllUserTasks();
+    public int getUserTasksCount();
+    public int updateUserTasks(UserTasks userTasks);
+    public void deleteUserTasks(UserTasks userTasks);
     public void deleteAllUserTasks(UserTasks userTasks);
+
+    //Методы для заданий
+    public void addTask(Tasks tasks);
+    public Tasks getTasks(int id);
+    public List<Tasks> getAllTasks();
+    public int getTasksCount();
+    public int updateTasks(Tasks tasks);
+    public void deleteTasks(Tasks tasks);
+    public void deleteAllTasks(Tasks tasks);
+
+    //Методы для статистики
+    public void addStats(Stats stats);
+    public Stats getStats(int id);
+    public List<Stats> getAllStats();
+    public int getStatsCount();
+    public int updateStats(Stats stats);
+    public void deleteStats(Stats stats);
+    public void deleteAllStats(Stats stats);
+
+    //Методы для формы
+    public void addForm(Form form);
+    public Form getForm(int id);
+    public List<Form> getAllForm();
+    public int getFormCount();
+    public int updateForm(Form form);
+    public void deleteForm(Form form);
+    public void deleteAllForm(Form form);
+
+    //Методы диеты
+    public void addDiet(Diet diet);
+    public Diet getDiet(int id);
+    public List<Diet> getAllDiet();
+    public int getDietCount();
+    public int updateDiet(Diet diet);
+    public void deleteDiet(Diet diet);
+    public void deleteAllDiet(Diet diet);
+
 }
