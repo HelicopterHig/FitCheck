@@ -43,6 +43,7 @@ public class HomeMainFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private ExerciseAdapter gameAdapter;
      TextView  day1,day2,day3,day4,day5,day6,day7;
+     String days[] = new String[7];
     private TextView[] tv = new TextView[7];
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -68,13 +69,15 @@ public class HomeMainFragment extends Fragment {
         initCalendar();
         day1.setOnClickListener(v -> {
             select(day1);
-            //обновления листа активностей в соотвествии с выбранным днем
+            //обновления листа активностей в соотвествии с выбранным днем дата записана в days[0] в формате dd-mm-yyyy
         });
         day2.setOnClickListener(v -> {
             select(day2);
+            //обновления листа активностей в соотвествии с выбранным днем дата записана в days[1] в формате dd-mm-yyyy
         });
         day3.setOnClickListener(v -> {
             select(day3);
+            //обновления листа активностей в соотвествии с выбранным днем дата записана в days[2] в формате dd-mm-yyyy
         });
         day4.setOnClickListener(v -> {
             select(day4);
@@ -118,10 +121,12 @@ public class HomeMainFragment extends Fragment {
     void initCalendar(){
         Calendar now = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat("dd");
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar today = Calendar.getInstance();
         now.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         for (int i = 0; i <tv.length;i++){
             tv[i].setText(df.format(now.getTime()));
+            days[i] = dateFormat.format((now.getTime()));
             if (df.format(now.getTime()).equals(df.format(today.getTime())))
                 tv[i].setBackgroundResource(R.drawable.roundedbutton_active);
             now.add(Calendar.DATE, 1);
