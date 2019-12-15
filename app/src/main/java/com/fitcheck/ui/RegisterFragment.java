@@ -27,13 +27,13 @@ import static com.fitcheck.utils.Validation.validateFields;
 
 public class RegisterFragment extends Fragment {
     public static final String TAG = LoginFragment.class.getSimpleName();
-    TextInputEditText emailET, numberET, passET, nameET, surnameET;
+    TextInputEditText emailET, numberET, passET, nameET, surnameET, weightTL, heightTL;
     public static String server_name = "94.141.168.185:8008";
     MaterialButton signUpBtn;
-    TextInputLayout nameTIL, numberTIL, passTIL, emailTIL, surnameTIL;
+    TextInputLayout nameTIL, numberTIL, passTIL, emailTIL, surnameTIL, weightTIL, heightTIL;
     TextView signInBtn;
     RadioButton male, female, user, trainer;
-    String name, surname, pass, number,email;
+    String name, surname, pass, number,email, weight, height;
     private static final String EMPTY_STRING = "";
 
     @Nullable
@@ -61,8 +61,12 @@ public class RegisterFragment extends Fragment {
         signUpBtn.setOnClickListener(v1 -> register());
         male = v.findViewById(R.id.male);
         female = v.findViewById(R.id.female);
-        trainer = v.findViewById(R.id.T);
-        user = v.findViewById(R.id.U);
+        weightTL = v.findViewById(R.id.wghtTL);
+        heightTL = v.findViewById(R.id.hghtTL);
+        heightTIL = v.findViewById(R.id.hghtTIL);
+        weightTIL = v.findViewById(R.id.wghtTIL);
+//        trainer = v.findViewById(R.id.T);
+//        user = v.findViewById(R.id.U);
     }
 
     private void register() {
@@ -72,29 +76,49 @@ public class RegisterFragment extends Fragment {
         number = numberET.getText().toString();
         pass = passET.getText().toString();
         surname = surnameET.getText().toString();
+        weight = weightTL.getText().toString();
+        height = heightTL.getText().toString();
 
         int err = 0;
         if (!validateFields(name)) {
 
             err++;
-            nameTIL.setError("Name should not be empty !");
+            nameTIL.setError("Имя должно быть не пустым! ");
+        }
+
+        if (!validateFields(surname)) {
+
+            err++;
+            surnameTIL.setError("Фамилия должна быть не пуста! ");
         }
 
         if (!validateEmail(email)) {
 
             err++;
-            emailTIL.setError("Email should be valid !");
+            emailTIL.setError("Email должен быть корректным! ");
         }
 
         if (!validateFields(pass)) {
 
             err++;
-            passTIL.setError("Password should not be empty !");
+            passTIL.setError("Пароль должен быть корректным! ");
         }
-        if (!validateFields(number)) {
+        if (!validateFields(weight)) {
             err++;
-            numberTIL.setError("Incorrect number !");
+            weightTIL.setError("Некорректный вес! ");
 
+        }
+
+        if (!validateFields(height)) {
+
+            err++;
+            heightTIL.setError("Некорректный рост! ");
+        }
+
+        if (!validateFields(surname)) {
+
+            err++;
+            surnameTIL.setError("Фамилия должна быть не пуста! ");
         }
 
         if (err == 0) {
@@ -122,9 +146,9 @@ public class RegisterFragment extends Fragment {
         else return "F";
     }
     private String getType(){
-        if (trainer.isChecked())
+        if (false)
             return "http://" + server_name + "/trainer?name="+name+ "&surname=" + surname+"&email="+email+"&password=" + pass +"&phone_num="+number+"&gender="+getGender();
-        else return "http://" + server_name + "/user?name="+name+ "&surname=" + surname+"&email="+email+"&password=" + pass + "&phone_num="+number+"&active=1&gender="+getGender()+"&trainer_id=1";
+        else return "http://" + server_name + "/userTwo?name="+name+ "&surname=" + surname+"&email="+email+"&password=" + pass + "&phone_num="+number+"&active=1&gender="+getGender()+"&trainer_id=1" + "&weight=" + Integer.parseInt(weight) + "&height=" + Integer.parseInt(height);
     }
 
     private void signIn() {
@@ -140,6 +164,8 @@ public class RegisterFragment extends Fragment {
         passTIL.setError(EMPTY_STRING);
         numberTIL.setError(EMPTY_STRING);
         surnameTIL.setError(EMPTY_STRING);
+        weightTIL.setError(EMPTY_STRING);
+        heightTIL.setError(EMPTY_STRING);
     }
 
     class Reg extends AsyncTask<Void, Void, Void> {

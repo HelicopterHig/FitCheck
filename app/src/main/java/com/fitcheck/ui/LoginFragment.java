@@ -91,7 +91,7 @@ public class LoginFragment extends Fragment {
         signUpBtn.setText(R.string.sign_up);
         signUpBtn.setOnClickListener(view -> signUp());
         signinBtn.setOnClickListener(v1 -> login());
-      //  mapBtn = v.findViewById(R.id.mapBtn);
+        //  mapBtn = v.findViewById(R.id.mapBtn);
        /* mapBtn.setOnClickListener(v1 -> {
             Intent  intent = new Intent(getActivity(), MapActivity.class);
             startActivity(intent);
@@ -107,13 +107,13 @@ public class LoginFragment extends Fragment {
         if (!validateEmail(email)) {
 
             err++;
-            nameTIL.setError("Email should be valid !");
+            nameTIL.setError("Email должен быть корректным! ");
         }
 
         if (!validateFields(pass)) {
 
             err++;
-            nmbrTIL.setError("Password should not be empty !");
+            nmbrTIL.setError("Пароль должен быть корректным! ");
         }
 
         if (err == 0) {

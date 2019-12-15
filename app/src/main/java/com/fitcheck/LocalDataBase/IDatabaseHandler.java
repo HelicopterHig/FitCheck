@@ -14,7 +14,7 @@ interface IDatabaseHandler {
     public int getUserCount();
     public int updateUser(User user);
     public void deleteUser(User user);
-    public void deleteAllUser(User user);
+    public void deleteAllUser();
 
     //методы для тренера
     public void addTrainer(Trainer trainer);
@@ -23,7 +23,7 @@ interface IDatabaseHandler {
     public int getTrainerCount();
     public int updateTrainer(Trainer trainer);
     public void deleteTrainer(Trainer trainer);
-    public void deleteAllTrainers(Trainer trainer);
+    public void deleteAllTrainers();
 
     //методы для упражнений
     public void addUserTask(UserTasks userTasks);
@@ -32,7 +32,7 @@ interface IDatabaseHandler {
     public int getUserTasksCount();
     public int updateUserTasks(UserTasks userTasks);
     public void deleteUserTasks(UserTasks userTasks);
-    public void deleteAllUserTasks(UserTasks userTasks);
+    public void deleteAllUserTasks();
 
     //Методы для заданий
     public void addTask(Tasks tasks);
@@ -41,7 +41,7 @@ interface IDatabaseHandler {
     public int getTasksCount();
     public int updateTasks(Tasks tasks);
     public void deleteTasks(Tasks tasks);
-    public void deleteAllTasks(Tasks tasks);
+    public void deleteAllTasks();
 
     //Методы для статистики
     public void addStats(Stats stats);
@@ -50,7 +50,7 @@ interface IDatabaseHandler {
     public int getStatsCount();
     public int updateStats(Stats stats);
     public void deleteStats(Stats stats);
-    public void deleteAllStats(Stats stats);
+    public void deleteAllStats();
 
     //Методы для формы
     public void addForm(Form form);
@@ -59,7 +59,7 @@ interface IDatabaseHandler {
     public int getFormCount();
     public int updateForm(Form form);
     public void deleteForm(Form form);
-    public void deleteAllForm(Form form);
+    public void deleteAllForm();
 
     //Методы диеты
     public void addDiet(Diet diet);
@@ -68,6 +68,14 @@ interface IDatabaseHandler {
     public int getDietCount();
     public int updateDiet(Diet diet);
     public void deleteDiet(Diet diet);
-    public void deleteAllDiet(Diet diet);
+    public void deleteAllDiet();
 
+    //Методы для упражнений
+    public void addExercise(Exercise exer);
+    public Exercise getExercise(int id);
+    public List<Exercise> getAllExercise();
+    public int getExerciseCount();
+    public int updateExercise(Exercise exer);
+    public void deleteExercise(Exercise exer);
+    public void deleteAllExercise();
 }

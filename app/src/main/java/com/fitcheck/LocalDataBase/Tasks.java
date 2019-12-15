@@ -9,6 +9,9 @@ public class Tasks {
 
     public Tasks() {}
 
+
+
+
     public Tasks(int _id, int _ID_task, String _name, String _type, String _subtupe) {
         this._id = _id;
         this._ID_task = _ID_task;

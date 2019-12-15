@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandler {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "fit_check";
 
     public DatabaseHandler(Context context){
@@ -27,6 +27,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         db.execSQL(CREATE_STATS_TABLE);
         db.execSQL(CREATE_FORM_TABLE);
         db.execSQL(CREATE_DIET_TABLE);
+        db.execSQL(CREATE_EXER_TABLE);
     }
 
     @Override
@@ -38,6 +39,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FORM);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DIET);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXER);
 
         onCreate(db);
     }
@@ -163,7 +165,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     }
 
     @Override
-    public void deleteAllUser(User user) {
+    public void deleteAllUser() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_USER, null, null);
         db.close();
@@ -279,7 +281,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     }
 
     @Override
-    public void deleteAllTrainers(Trainer trainer) {
+    public void deleteAllTrainers() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_TRAINER, null, null);
         db.close();
@@ -407,7 +409,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
 
 
     @Override
-    public void deleteAllUserTasks(UserTasks userTasks) {
+    public void deleteAllUserTasks() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_USER_TASKS, null, null);
         db.close();
@@ -515,7 +517,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
 
 
     @Override
-    public void deleteAllTasks(Tasks tasks) {
+    public void deleteAllTasks() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_TASKS, null, null);
         db.close();
@@ -656,7 +658,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
 
 
     @Override
-    public void deleteAllStats(Stats stats) {
+    public void deleteAllStats() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_STATS, null, null);
         db.close();
@@ -796,7 +798,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
 
 
     @Override
-    public void deleteAllForm(Form form) {
+    public void deleteAllForm() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_FORM, null, null);
         db.close();
@@ -918,9 +920,135 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
 
 
     @Override
-    public void deleteAllDiet(Diet diet) {
+    public void deleteAllDiet() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_DIET, null, null);
+        db.close();
+    }
+
+    //******************************************Exercise************************************************
+    private static final String TABLE_EXER = "exer";
+    private static final String KEY_E_ID = "id";
+    private static final String KEY_E_CLIENT_ID = "client_id";
+    private static final String KEY_E_UT_ID = "ut_id";
+    private static final String KEY_E_DONE = "done";
+    private static final String KEY_E_NAME= "name";
+    private static final String KEY_E_EX_INFO= "ex_info";
+    private static final String KEY_E_TYPE_EX= "exercise_type_ex";
+    private static final String KEY_E_TYPE_WRK= "exercise_type_work";
+
+
+    private static final String CREATE_EXER_TABLE = "CREATE TABLE " + TABLE_EXER + "(" + KEY_E_ID + " INTEGER PRIMARY KEY," +
+            KEY_E_CLIENT_ID + " integer," + KEY_E_UT_ID + " integer," + KEY_E_DONE + " integer,"  + KEY_E_NAME + " text," +
+            KEY_E_EX_INFO + " text," + KEY_E_TYPE_EX + " text, " + KEY_E_TYPE_WRK + " text)";
+
+    @Override
+    public void addExercise(Exercise exer) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_E_ID, exer.get_id());
+        values.put(KEY_E_CLIENT_ID, exer.getClient_id());
+        values.put(KEY_E_UT_ID, exer.getUt_id());
+        values.put(KEY_E_DONE, exer.get_done());
+        values.put(KEY_E_NAME, exer.get_name());
+        values.put(KEY_E_EX_INFO, exer.get_ex_info());
+        values.put(KEY_E_TYPE_EX, exer.get_exercise_type_ex());
+        values.put(KEY_E_TYPE_WRK, exer.get_exercise_type_work());
+
+
+
+        db.insert(TABLE_EXER, null, values);
+        db.close();
+    }
+
+    @Override
+    public Exercise getExercise(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_EXER, new String[] {KEY_E_ID, KEY_E_CLIENT_ID, KEY_E_UT_ID, KEY_E_DONE, KEY_E_NAME, KEY_E_EX_INFO, KEY_E_TYPE_EX, KEY_E_TYPE_WRK}, KEY_E_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        Exercise exer = new Exercise(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
+                Integer.parseInt(cursor.getString(2)), Integer.parseInt(cursor.getString(3)), cursor.getString(4), cursor.getString(5),
+                cursor.getString(6), cursor.getString(7));
+
+        return exer;
+    }
+
+    @Override
+    public List<Exercise> getAllExercise() {
+        List<Exercise> ExerciseList = new ArrayList<Exercise>();
+        String selectQuery = "SELECT * FROM " + TABLE_EXER;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()){
+            do{
+                Exercise exer = new Exercise();
+
+                exer.set_id(Integer.parseInt(cursor.getString(0)));
+                exer.setClient_id(Integer.parseInt(cursor.getString(1)));
+                exer.setUt_id(Integer.parseInt(cursor.getString(2)));
+                exer.set_done(Integer.parseInt(cursor.getString(3)));
+                exer.set_name(cursor.getString(4));
+                exer.set_ex_info(cursor.getString(5));
+                exer.set_exercise_type_ex(cursor.getString(6));
+                exer.set_exercise_type_work(cursor.getString(7));
+
+
+                ExerciseList.add(exer);
+            }while (cursor.moveToNext());
+        }
+        return ExerciseList;
+    }
+
+    @Override
+    public int getExerciseCount() {
+        String countQuery = "SELECT * FROM " + TABLE_EXER;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        cursor.close();
+
+        return cursor.getCount();
+    }
+
+    @Override
+    public int updateExercise(Exercise exer) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_E_ID, exer.get_id());
+        values.put(KEY_E_CLIENT_ID, exer.getClient_id());
+        values.put(KEY_E_UT_ID, exer.getUt_id());
+        values.put(KEY_E_DONE, exer.get_done());
+        values.put(KEY_E_NAME, exer.get_name());
+        values.put(KEY_E_EX_INFO, exer.get_ex_info());
+        values.put(KEY_E_TYPE_EX, exer.get_exercise_type_ex());
+        values.put(KEY_E_TYPE_WRK, exer.get_exercise_type_work());
+
+
+        return db.update(TABLE_EXER, values, KEY_E_ID + " = ?", new String[] { String.valueOf(exer.get_id())});
+    }
+
+    @Override
+    public void deleteExercise(Exercise exer) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_EXER, KEY_E_ID + " = ?", new String[] {String.valueOf(exer.get_id())});
+        db.close();
+    }
+
+
+    @Override
+    public void deleteAllExercise() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_EXER, null, null);
         db.close();
     }
 }

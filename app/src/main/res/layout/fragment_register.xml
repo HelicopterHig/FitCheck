@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/logon_left_margin"
         android:fontFamily="@font/roboto_bold"
-        android:text="Helloo!"
+        android:text="Привет!"
         android:textColor="@color/design_default_color_primary_variant"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/logon_left_margin"
         android:fontFamily="@font/roboto_bold"
-        android:text="Tell Us about yourself!"
+        android:text="Расскажите нам о Вас!"
         android:textAlignment="viewStart"
         android:textColor="#4F525A"
         android:textSize="18sp"
@@ -62,28 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView2" />
 
-    <RadioGroup
-        android:id="@+id/userType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checkedButton="@+id/U"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
 
-        <RadioButton
-            android:id="@+id/T"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Trainer" />
-
-        <RadioButton
-            android:id="@+id/U"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User" />
-    </RadioGroup>
 
     <RadioGroup
         android:id="@+id/gender"
@@ -99,13 +78,13 @@
             android:id="@+id/male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male" />
+            android:text="Мужчина" />
 
         <RadioButton
             android:id="@+id/female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Female" />
+            android:text="Женщина" />
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -113,9 +92,9 @@
         style="@style/regTIL"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="8dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:alwaysDrawnWithCache="false"
-        android:hint="NAME*"
+        android:hint="Имя"
         android:measureWithLargestChild="false"
         android:textColorHint="#A1000000"
         app:boxStrokeWidth="0dp"
@@ -145,9 +124,9 @@
         style="@style/regTIL"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="8dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:alwaysDrawnWithCache="false"
-        android:hint="SURNAME*"
+        android:hint="Фамилия"
         android:measureWithLargestChild="false"
         android:textColorHint="#A1000000"
         app:boxStrokeWidth="0dp"
@@ -177,7 +156,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:hint="E-MAIL*"
+        android:hint="E-mail"
         android:textColorHint="#A1000000"
         app:boxBackgroundMode="filled"
         app:boxStrokeColor="@color/background"
@@ -208,39 +187,66 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:hint="PASSWORD*"
+        android:hint="Пароль"
         android:textColorHint="#A1000000"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="@color/background"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
-        app:endIconMode="password_toggle"
+        app:counterEnabled="false"
         app:errorEnabled="true"
         app:hintEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numberTIL"
-        app:passwordToggleEnabled="true">
+        app:layout_constraintTop_toBottomOf="@id/wghtTIL"
+        app:passwordToggleEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FDFDFD"
             android:fontFamily="@font/roboto_bold"
             android:inputType="textPassword"
-            android:selectAllOnFocus="false"
             android:singleLine="true"
             android:textColor="@color/design_default_color_primary_variant"
             android:textSize="12sp"
-            android:visibility="visible"
-            tools:visibility="visible" />
+            tools:visibility="visible"  />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/numberTIL"
+    android:id="@+id/numberTIL"
+    style="@style/regTIL"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:hint="Мобильный телфеон"
+    android:textColorHint="#A1000000"
+    app:boxStrokeWidth="0dp"
+    app:boxStrokeWidthFocused="0dp"
+    app:counterEnabled="false"
+    app:errorEnabled="true"
+    app:hintEnabled="true"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/emailTIL"
+    app:passwordToggleEnabled="false">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/numberET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:inputType="text"
+        android:singleLine="true"
+        android:textColor="@color/design_default_color_primary_variant"
+        android:textSize="12sp"
+        tools:visibility="visible" />
+</com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/hghtTIL"
         style="@style/regTIL"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:hint="MOBILE NUMBER*"
+        android:hint="Рост"
         android:textColorHint="#A1000000"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
@@ -248,15 +254,44 @@
         app:errorEnabled="true"
         app:hintEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTIL"
+        app:layout_constraintTop_toBottomOf="@+id/numberTIL"
         app:passwordToggleEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/numberET"
+            android:id="@+id/hghtTL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
-            android:inputType="text"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColor="@color/design_default_color_primary_variant"
+            android:textSize="12sp"
+            tools:visibility="visible" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/wghtTIL"
+        style="@style/regTIL"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:hint="Вес"
+        android:textColorHint="#A1000000"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:counterEnabled="false"
+        app:errorEnabled="true"
+        app:hintEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hghtTIL"
+        app:passwordToggleEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/wghtTL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:inputType="number"
             android:singleLine="true"
             android:textColor="@color/design_default_color_primary_variant"
             android:textSize="12sp"
@@ -269,7 +304,7 @@
         android:layout_width="316dp"
         android:layout_height="60dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="SIGN UP"
+        android:text="Зарегистрироваться"
         android:textSize="18sp"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -293,7 +328,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
-            android:text="Already did this? "
+            android:text="Уже есть аккаунт? "
             android:textColor="@color/design_default_color_primary_variant">
 
         </TextView>
@@ -306,7 +341,7 @@
             android:clickable="true"
             android:focusable="true"
             android:fontFamily="@font/roboto_bold"
-            android:text="@string/sign_in"
+            android:text="Авторизируйтесь!"
             android:textAllCaps="false"
             android:textColor="@color/errorCl" />
 

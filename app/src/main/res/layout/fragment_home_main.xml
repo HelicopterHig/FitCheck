@@ -47,12 +47,28 @@
         android:layout_height="wrap_content"
         android:text="Today_is_DATE"
         android:textAlignment="center"
+        android:fontFamily="@font/roboto_thin"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+
+    <TextView
+        android:id="@+id/empty_tasks_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Нет упражнений в этот день"
+        android:fontFamily="@font/roboto_thin"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline18"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"/>
 
     <ImageView
         android:id="@+id/imageView"
@@ -80,14 +96,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_thin"
-        android:text="SAT"
+        android:text="Сб"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/main_date_num_7"
-        app:layout_constraintEnd_toStartOf="@+id/guideline15"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="@+id/guideline14"
+        app:layout_constraintEnd_toStartOf="@+id/guideline14"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
         app:layout_constraintVertical_bias="0.0" />
+
 
     <TextView
         android:id="@+id/main_date_rectangle_7"
@@ -130,13 +146,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_thin"
-        android:text="FRI"
+        android:text="Пт"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/main_date_num_6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline14"
-        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
         app:layout_constraintVertical_bias="0.0" />
+
 
     <ImageView
         android:id="@+id/main_date_num_5"
@@ -165,14 +182,15 @@
         android:id="@+id/main_date_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="THU"
+        android:text="Чт"
         android:textColor="#000000"
         android:fontFamily="@font/roboto_thin"
         app:layout_constraintBottom_toTopOf="@+id/main_date_num_5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline11"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
         app:layout_constraintVertical_bias="0.0" />
+
 
     <ImageView
         android:id="@+id/main_date_num_4"
@@ -202,26 +220,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_thin"
-        android:text="WED"
+        android:text="Ср"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/main_date_num_4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline12"
-        app:layout_constraintStart_toStartOf="@+id/guideline11"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"/>
+
 
     <TextView
         android:id="@+id/main_date_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TUE"
+        android:text="Вт"
         android:fontFamily="@font/roboto_thin"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/main_date_num_3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline11"
-        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
         app:layout_constraintVertical_bias="0.0" />
+
+
 
     <ImageView
         android:id="@+id/main_date_num_3"
@@ -250,14 +271,15 @@
         android:id="@+id/main_date_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MON"
+        android:text="Пн"
         android:fontFamily="@font/roboto_thin"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/main_date_num_2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
         app:layout_constraintVertical_bias="0.0" />
+
 
     <ImageView
         android:id="@+id/main_date_num_2"
@@ -310,12 +332,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
-        android:text="SUN"
+        android:text="Вс"
         android:fontFamily="@font/roboto_thin"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/main_date_num_1"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintBottom_toTopOf="@+id/main_date_num_7"
+        app:layout_constraintEnd_toStartOf="@+id/guideline15"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -382,16 +405,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.30" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Exercise for today:"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline16"
