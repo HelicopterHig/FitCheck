@@ -3,6 +3,8 @@ package com.fitcheck.ui.entries;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,11 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,8 +43,12 @@ import com.fitcheck.ui.elementAdapter.ExerciseAdapter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -94,6 +102,7 @@ public class HomeMainFragment extends Fragment {
     private static String TAG_NAME = "name";
 
     View root;
+    Exercise exercise = new Exercise();
 
 
 
@@ -118,6 +127,8 @@ public class HomeMainFragment extends Fragment {
         String formattedDate = df.format(c);
         textView.setText("Сегодня "+formattedDate);
 
+        recyclerView = (RecyclerView)root.findViewById(R.id.recyclerview_exercise);
+
 
         db=new DatabaseHandler(root.getContext());
         db.deleteAllExercise();
@@ -126,44 +137,37 @@ public class HomeMainFragment extends Fragment {
         initCalendar();
         day1.setOnClickListener(v -> {
             day = days[0];
-            buildRecyclerViewGame(root);
-            select(day1);
+            onResume();
             select(day1);
         });
         day2.setOnClickListener(v -> {
             day = days[1];
-            buildRecyclerViewGame(root);
-            select(day2);
+            onResume();
             select(day2);
         });
         day3.setOnClickListener(v -> {
             day = days[2];
-            buildRecyclerViewGame(root);
-            select(day3);
+            onResume();
             select(day3);
         });
         day4.setOnClickListener(v -> {
             day = days[3];
-           buildRecyclerViewGame(root);
-            select(day4);
+            onResume();
             select(day4);
         });
         day5.setOnClickListener(v -> {
             day = days[4];
-            buildRecyclerViewGame(root);
-            select(day5);
+            onResume();
             select(day5);
         });
         day6.setOnClickListener(v -> {
             day = days[5];
-            buildRecyclerViewGame(root);
-            select(day6);
+            onResume();
             select(day6);
         });
         day7.setOnClickListener(v -> {
             day = days[6];
-            buildRecyclerViewGame(root);
-            select(day7);
+            onResume();
             select(day7);
         });
 
@@ -182,7 +186,7 @@ public class HomeMainFragment extends Fragment {
         }
 
         String exname, exinfo, extypeex, extypewrk;
-        int exdone;
+        int exdone, exid;
 
         enote = db.getAllExercise();
         db.deleteAllExercise();
@@ -192,7 +196,8 @@ public class HomeMainFragment extends Fragment {
             extypeex = ex.get_exercise_type_ex();
             extypewrk = ex.get_exercise_type_work();
             exdone = ex.get_done();
-            itemExerciseArrayList.add((new ElementExercise(exname, exinfo, extypeex, extypewrk, exdone)));
+            exid = ex.get_id();
+            itemExerciseArrayList.add((new ElementExercise(exname, exinfo, extypeex, extypewrk, exdone, exid)));
         }
 
 //       itemExerciseArrayList.add(new ElementExercise("Пресс", "15/2", "кол-во/подходы", "Аеробика", 0));
@@ -201,10 +206,9 @@ public class HomeMainFragment extends Fragment {
 //        itemExerciseArrayList.add(new ElementExercise("Сгибание рук с гантелями на скамье", "5/7", "кол-во/подходы", "Имассоэробика", 1));
     }
 
-    private void buildRecyclerViewGame(View root){
+    private void buildRecyclerViewGame(){
         createListExercise();
 
-        recyclerView = (RecyclerView)root.findViewById(R.id.recyclerview_exercise);
         recyclerView.setHasFixedSize(true);
 
         gameAdapter = new ExerciseAdapter(getActivity(), itemExerciseArrayList);
@@ -214,8 +218,17 @@ public class HomeMainFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(gameAdapter);
 
+        swipeToDeleteHelper.attachToRecyclerView(recyclerView);
+
         showEmptyView();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        buildRecyclerViewGame();
+    }
+
     @SuppressLint("SetTextI18n")
     void initCalendar(){
         Calendar now = Calendar.getInstance();
@@ -358,6 +371,120 @@ public class HomeMainFragment extends Fragment {
         } else {
             this.recyclerView.setVisibility(View.VISIBLE);
             root.findViewById(R.id.empty_tasks_view).setVisibility(View.GONE);
+        }
+    }
+
+    //Удаление
+    private ItemTouchHelper swipeToDeleteHelper = new ItemTouchHelper(
+            new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                @Override
+                public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                    return false;
+                }
+
+                @Override
+                public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+                    if (itemExerciseArrayList != null) {
+                        ElementExercise swipedNote = itemExerciseArrayList.get(viewHolder.getAdapterPosition());
+                        if (swipedNote != null) {
+                            swipeToDelete(swipedNote,viewHolder);
+
+                        }
+
+                    }
+                }
+            });
+
+    private void swipeToDelete( final ElementExercise swipedNote, final RecyclerView.ViewHolder viewHolder) {
+        //new android.support.v7.app.AlertDialog.Builder(getActivity())
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Хотите удалить упражнение?");
+            builder.setPositiveButton("Удалить", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Удаление упржанения
+                        exercise = db.getExercise(swipedNote.getTasks_id());
+
+
+
+
+                        try {
+                            new DeleteExercise().execute();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                        db.deleteExercise(exercise);
+                        itemExerciseArrayList.remove(swipedNote);
+                        gameAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                        showEmptyView();
+
+                    }
+                });
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        recyclerView.getAdapter().notifyItemChanged(viewHolder.getAdapterPosition());
+
+
+                    }
+                });
+                builder.setCancelable(false);
+                builder.create().show();
+
+    }
+
+
+    class DeleteExercise extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                String myURL = "http://" + server_name +"/deleteEx?id=" + exercise.getUt_id();
+                byte[] data = null;
+                InputStream is = null;
+
+
+                try {
+                    URL url = new URL(myURL);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("GET");
+
+                    conn.connect();
+                    int responseCode = conn.getResponseCode();
+
+
+                    OutputStream os = conn.getOutputStream();
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                    if (responseCode == 200) {
+                        is = conn.getInputStream();
+
+                        byte[] buffer = new byte[8192];
+                        int bytesRead;
+
+                        while ((bytesRead = is.read(buffer)) != -1) {
+                            baos.write(buffer, 0, bytesRead);
+                        }
+
+                        data = baos.toByteArray();
+                        String resultString = new String(data, "UTF-8");
+                    }
+                    else {
+                        conn.disconnect();
+                    }
+
+                }  catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
         }
     }
 

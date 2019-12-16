@@ -1,21 +1,21 @@
 <resources>
     <string name="app_name">FitCheck</string>
     <string name="title_activity_bottom_navigation">bottom_navigation</string>
-    <string name="title_home">Home</string>
+    <string name="title_home">Тренировка</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="continuebtn">SIGN IN</string>
+    <string name="continuebtn">ВОЙТИ</string>
     <string name="error_lenght">Enter your name</string>
     <string name="error_incorrect_number">Incorrect number</string>
-    <string name="sign_up"><u>Sign Up!</u></string>
-    <string name="sign_in"><u>Sign In!</u></string>
+    <string name="sign_up"><u>Создайте!</u></string>
+    <string name="sign_in"><u>Войти!</u></string>
     <string name="button_color">button_color</string>
     <string name="new_to_this_experience">New to this Experience?</string>
-    <string name="title_home_main">HOME</string>
-    <string name="title_statistic">STATISTIC</string>
-    <string name="title_calendar">CALENDAR</string>
-    <string name="title_settings">SETTINGS</string>
-    <string name="title_map_trainer">MORE</string>
+    <string name="title_home_main">Тренировка</string>
+    <string name="title_statistic">Статистика</string>
+    <string name="title_calendar">Упражнения</string>
+    <string name="title_settings">Настройки</string>
+    <string name="title_map_trainer">Настройки</string>
     <string name="result_text">Please focus camera to QR code</string>
     <string name="load_places">Load Places</string>
 </resources>

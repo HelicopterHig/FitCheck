@@ -4,12 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fitcheck.LocalDataBase.DatabaseHandler;
+import com.fitcheck.LocalDataBase.Exercise;
 import com.fitcheck.LocalDataBase.User;
 import com.fitcheck.R;
 
@@ -22,8 +24,9 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
     public Context context;
     DatabaseHandler db;
     private boolean check;
-    int pos, user_id;
+    int pos, user_id, checkP;
     private NoteEventListener Listener;
+    UpdateChecked updateChecked;
     public ExerciseAdapter (Context context, ArrayList<ElementExercise> itemArray){
         this.context = context;
         itemArrayList = itemArray;
@@ -48,8 +51,8 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ElementExercise currentItem = itemArrayList.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        final ElementExercise currentItem = itemArrayList.get(position);
 
         db = new DatabaseHandler(context);
         if (currentItem.getDone() == 1){
@@ -63,13 +66,54 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         holder.ex_infoView.setText(currentItem.getEx_InfoElement());
         holder.exercise_type_exView.setText(currentItem.getExercise_Type_ExElement());
         holder.exercise_type_workView.setText(currentItem.getExercise_Type_WorkElement());
+        holder.checkBox.setChecked(check);
+
 
         List<User> userList = db.getAllUser();
         for (User u : userList){
             user_id = u.get_id();
         }
-        
+
         //Дописать чек
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkP = position;
+                checked[pos] = !checked[pos];
+                //db = new DatabaseHandler(context);
+                ElementExercise item = itemArrayList.get(checkP);
+                Exercise ex = db.getExercise(item.getTasks_id());
+                if (user_id == ex.getClient_id()) {
+
+                    updateChecked = new UpdateChecked();
+
+                    //get_id или getUt_id
+                    if (ex.get_done() == 1) {
+                        ex.set_done(0);
+                        updateChecked.UpdateCheckVoid(ex.getUt_id(), 0);
+                    } else {
+                        ex.set_done(1);
+                        updateChecked.UpdateCheckVoid(ex.getUt_id(), 1);
+                    }
+
+                    db.updateExercise(ex);
+
+
+                }else {
+                    if (currentItem.getDone() == 1){
+                        check = true;
+                    }else {
+                        check = false;
+                    }
+
+                    if (check == true) {
+                        holder.checkBox.setChecked(true);
+                    }else {
+                        holder.checkBox.setChecked(false);
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -85,6 +129,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         public TextView ex_infoView;
         public TextView exercise_type_exView;
         public TextView exercise_type_workView;
+        public CheckBox checkBox;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,6 +137,8 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
             ex_infoView = itemView.findViewById(R.id.exercise_ex_info);
             exercise_type_exView = itemView.findViewById(R.id.exercise_type_ex);
             exercise_type_workView = itemView.findViewById(R.id.exercise_type_work);
+            checkBox = itemView.findViewById(R.id.checkBox);
+
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
