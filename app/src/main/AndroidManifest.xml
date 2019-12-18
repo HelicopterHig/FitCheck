@@ -63,6 +63,8 @@
 
         <activity android:name=".ui.task.CreateTaskActivity"></activity>
 
+        <activity android:name=".ui.task.TasksActivity"></activity>
+
 
 
     </application>

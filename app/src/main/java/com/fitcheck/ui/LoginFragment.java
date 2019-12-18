@@ -77,6 +77,7 @@ public class LoginFragment extends Fragment {
 
         super.onAttach(activity);
         db = new DatabaseHandler(activity);
+        db.deleteAllUser();
 
     }
 

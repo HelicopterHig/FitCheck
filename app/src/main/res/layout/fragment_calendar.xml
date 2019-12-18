@@ -6,28 +6,69 @@
     android:layout_height="match_parent">
 
 
-
-    <TextView
-        android:id="@+id/text_calendar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+    <ImageView
+        android:id="@+id/imageTask2"
+        android:layout_width="500dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Spinner
+        android:id="@+id/spinner_type"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="61dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_subtype"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageTask2" />
+
+    <Spinner
+        android:id="@+id/spinner_subtype"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="58dp"
+        app:layout_constraintBottom_toTopOf="@+id/createBtn2"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/createBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Button"
+        android:id="@+id/createBtn2"
+        style="@style/AppTheme"
+        android:background="#2f3281"
+        android:textColor="#FFFFFF"
+        android:layout_width="316dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="135dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Создать тренировку"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_calendar"
         tools:ignore="MissingConstraints" />
+
+    <!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/createBtn"-->
+<!--        style="@style/AppTheme"-->
+<!--        android:layout_width="316dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:fontFamily="@font/roboto_bold"-->
+<!--        android:text="Добавить упражнение"-->
+<!--        android:textSize="18sp"-->
+<!--        app:cornerRadius="20dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/spinner_subtype"-->
+<!--        tools:ignore="MissingConstraints" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

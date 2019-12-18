@@ -127,47 +127,47 @@ public class HomeMainFragment extends Fragment {
         String formattedDate = df.format(c);
         textView.setText("Сегодня "+formattedDate);
 
-        recyclerView = (RecyclerView)root.findViewById(R.id.recyclerview_exercise);
 
 
         db=new DatabaseHandler(root.getContext());
         db.deleteAllExercise();
+        db.deleteAllUserTasks();
 
 
         initCalendar();
         day1.setOnClickListener(v -> {
             day = days[0];
-            onResume();
+            buildRecyclerViewGame();
             select(day1);
         });
         day2.setOnClickListener(v -> {
             day = days[1];
-            onResume();
+            buildRecyclerViewGame();
             select(day2);
         });
         day3.setOnClickListener(v -> {
             day = days[2];
-            onResume();
+            buildRecyclerViewGame();
             select(day3);
         });
         day4.setOnClickListener(v -> {
             day = days[3];
-            onResume();
+            buildRecyclerViewGame();
             select(day4);
         });
         day5.setOnClickListener(v -> {
             day = days[4];
-            onResume();
+            buildRecyclerViewGame();
             select(day5);
         });
         day6.setOnClickListener(v -> {
             day = days[5];
-            onResume();
+            buildRecyclerViewGame();
             select(day6);
         });
         day7.setOnClickListener(v -> {
             day = days[6];
-            onResume();
+            buildRecyclerViewGame();
             select(day7);
         });
 
@@ -180,7 +180,6 @@ public class HomeMainFragment extends Fragment {
 
        try {
             new SendUT().execute();
-            //enote = db.getAllExercise();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -190,6 +189,7 @@ public class HomeMainFragment extends Fragment {
 
         enote = db.getAllExercise();
         db.deleteAllExercise();
+        db.deleteAllUserTasks();
         for (Exercise ex: enote) {
             exname = ex.get_name();
             exinfo = ex.get_ex_info();
@@ -209,6 +209,9 @@ public class HomeMainFragment extends Fragment {
     private void buildRecyclerViewGame(){
         createListExercise();
 
+        recyclerView = (RecyclerView)root.findViewById(R.id.recyclerview_exercise);
+
+
         recyclerView.setHasFixedSize(true);
 
         gameAdapter = new ExerciseAdapter(getActivity(), itemExerciseArrayList);
@@ -223,11 +226,6 @@ public class HomeMainFragment extends Fragment {
         showEmptyView();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        buildRecyclerViewGame();
-    }
 
     @SuppressLint("SetTextI18n")
     void initCalendar(){
@@ -287,6 +285,8 @@ public class HomeMainFragment extends Fragment {
                     JSONArray utask = new JSONArray(data);
 
                     db.deleteAllExercise();
+                    db.deleteAllUserTasks();
+
                     //Несколько раз
                     for (int i = 0; i < utask.length(); i++) {
                         JSONObject schedule = utask.getJSONObject(i);
@@ -323,7 +323,7 @@ public class HomeMainFragment extends Fragment {
                         else {
                             if (meters != -1) {
                                 vid = "метры/минуты";
-                                znac = String.valueOf(meters) + "/" + String.valueOf(time);
+                                znac = String.valueOf(meters) + "/" + String.valueOf(times);
                             }
                             else {
                                 vid = "вес/повторения";
@@ -331,18 +331,7 @@ public class HomeMainFragment extends Fragment {
                             }
                         }
 
-                       // Exercise exer = new Exercise(i, client_id, ut_id, done, name, znac, vid, type);
-                       // System.out.println("Russia " + " " + exer.get_id() + " " + exer.getClient_id() + " " + exer.getUt_id() + " " + exer.get_done() + " " + exer.get_name() + " " + exer.get_ex_info() + " " + exer.get_exercise_type_ex() + " " + exer.get_exercise_type_work());
                         db.addExercise(new Exercise(i, client_id, ut_id, done, name, znac, vid, type));
-//                        System.out.println("Russia;");
-//                        Exercise exer = db.getExercise(i);
-//                        System.out.println("Russia " + " " + exer.get_id() + " " + exer.getClient_id() + " " + exer.getUt_id() + " " + exer.get_done() + " " + exer.get_name() + " " + exer.get_ex_info() + " " + exer.get_exercise_type_ex() + " " + exer.get_exercise_type_work());
-
-//                        enote = db.getAllExercise();
-//                        for (Exercise exer : enote){
-//                            System.out.println("Russia " + " " + exer.get_id() + " " + exer.getClient_id() + " " + exer.getUt_id() + " " + exer.get_done() + " " + exer.get_name() + " " + exer.get_ex_info() + " " + exer.get_exercise_type_ex() + " " + exer.get_exercise_type_work());
-//                        }
-
 
                     }
 
@@ -472,6 +461,10 @@ public class HomeMainFragment extends Fragment {
 
                         data = baos.toByteArray();
                         String resultString = new String(data, "UTF-8");
+
+                        db.deleteExercise(exercise);
+                        db.deleteUserTasks(db.getUserTasks(exercise.getUt_id()));
+
                     }
                     else {
                         conn.disconnect();

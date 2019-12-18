@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foregroundTint="#2D2F31">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/createTaskBtn"
+        style="@style/AppTheme"
+        android:layout_width="316dp"
+        android:layout_height="60dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Создать тренировку"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailTIL"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="100dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailTIL"
+        style="@style/regTIL"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="516dp"
+        android:hint="Пользователь"
+        android:textColorHint="#A1000000"
+        android:visibility="invisible"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:errorEnabled="true"
+        app:hintEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FDFDFD"
+            android:fontFamily="@font/roboto_bold"
+            android:selectAllOnFocus="false"
+            android:singleLine="true"
+            android:textColor="@color/design_default_color_primary_variant"
+            android:textSize="12sp"
+            android:visibility="visible"
+            tools:visibility="visible" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/taskTIL"
+        style="@style/regTIL"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:hint="Упражнение"
+        android:textColorHint="#A1000000"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
+        app:hintEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:passwordToggleEnabled="true"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/taskET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FDFDFD"
+            android:fontFamily="@font/roboto_bold"
+            android:selectAllOnFocus="false"
+            android:singleLine="true"
+            android:textColor="@color/design_default_color_primary_variant"
+            android:textSize="12sp"
+            android:visibility="visible"
+            tools:visibility="visible" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/timesTIL2"
+        style="@style/regTIL"
+        android:layout_height="wrap_content"
+        android:hint="Количество повторений"
+        android:textColorHint="#A1000000"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
+        app:hintEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateTIL2"
+        app:passwordToggleEnabled="true"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/timesET2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FDFDFD"
+            android:fontFamily="@font/roboto_bold"
+            android:selectAllOnFocus="false"
+            android:singleLine="true"
+            android:textColor="@color/design_default_color_primary_variant"
+            android:textSize="12sp"
+            android:visibility="visible"
+            tools:visibility="visible"
+            android:inputType="number"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dateTIL2"
+        style="@style/regTIL"
+        android:layout_height="wrap_content"
+        android:hint="Дата (ГГГГ-ММ-ДД)"
+        android:textColorHint="#A1000000"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
+        app:hintEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskTIL"
+        app:passwordToggleEnabled="true"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dateET2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FDFDFD"
+            android:fontFamily="@font/roboto_bold"
+            android:selectAllOnFocus="false"
+            android:singleLine="true"
+            android:textColor="@color/design_default_color_primary_variant"
+            android:textSize="12sp"
+            android:visibility="visible"
+            tools:visibility="visible"
+            android:inputType="date"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <ImageView
+        android:id="@+id/imageTaskSecond"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

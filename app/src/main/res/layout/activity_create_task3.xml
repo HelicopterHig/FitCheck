@@ -19,11 +19,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTIL"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/emailTIL3"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="100dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailTIL"
+        android:id="@+id/emailTIL3"
         style="@style/regTIL"
         android:layout_height="wrap_content"
         android:layout_marginTop="516dp"
@@ -56,7 +57,7 @@
         android:id="@+id/taskTIL"
         style="@style/regTIL"
         android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="350dp"
         android:hint="Упражнение"
         android:textColorHint="#A1000000"
         app:boxStrokeWidth="0dp"
@@ -84,10 +85,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/weightTIL"
+        android:id="@+id/meterTIL3"
         style="@style/regTIL"
         android:layout_height="wrap_content"
-        android:hint="Вес"
+        android:hint="Метры"
         android:textColorHint="#A1000000"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
@@ -95,12 +96,12 @@
         app:errorEnabled="true"
         app:hintEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setsTIL"
+        app:layout_constraintTop_toBottomOf="@+id/timesTIL3"
         app:passwordToggleEnabled="true"
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/weightET"
+            android:id="@+id/meterET3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FDFDFD"
@@ -110,14 +111,15 @@
             android:textColor="@color/design_default_color_primary_variant"
             android:textSize="12sp"
             android:visibility="visible"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/timesTIL"
+        android:id="@+id/timesTIL3"
         style="@style/regTIL"
         android:layout_height="wrap_content"
-        android:hint="Количество повторений"
+        android:hint="Минуты"
         android:textColorHint="#A1000000"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
@@ -125,12 +127,12 @@
         app:errorEnabled="true"
         app:hintEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateTIL"
+        app:layout_constraintTop_toBottomOf="@+id/dateTIL3"
         app:passwordToggleEnabled="true"
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/timesET"
+            android:id="@+id/timesET3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FDFDFD"
@@ -140,14 +142,15 @@
             android:textColor="@color/design_default_color_primary_variant"
             android:textSize="12sp"
             android:visibility="visible"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/dateTIL"
+        android:id="@+id/dateTIL3"
         style="@style/regTIL"
         android:layout_height="wrap_content"
-        android:hint="Дата"
+        android:hint="Дата (ГГГГ-ММ-ДД)"
         android:textColorHint="#A1000000"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
@@ -162,7 +165,7 @@
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/dateET"
+            android:id="@+id/dateET3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FDFDFD"
@@ -172,43 +175,15 @@
             android:textColor="@color/design_default_color_primary_variant"
             android:textSize="12sp"
             android:visibility="visible"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            android:inputType="date"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/setsTIL"
-        style="@style/regTIL"
-        android:layout_height="wrap_content"
-        android:hint="Количество подходов"
-        android:textColorHint="#A1000000"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:endIconMode="password_toggle"
-        app:errorEnabled="true"
-        app:hintEnabled="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timesTIL"
-        app:passwordToggleEnabled="true"
-        tools:ignore="MissingConstraints">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/setsET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FDFDFD"
-            android:fontFamily="@font/roboto_bold"
-            android:selectAllOnFocus="false"
-            android:singleLine="true"
-            android:textColor="@color/design_default_color_primary_variant"
-            android:textSize="12sp"
-            android:visibility="visible"
-            tools:visibility="visible" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/imageTask"
-        android:layout_width="167dp"
-        android:layout_height="166dp"
+        android:id="@+id/imageTaskThird"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
