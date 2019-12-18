@@ -139,38 +139,44 @@ public class HomeMainFragment extends Fragment {
         initCalendar();
         day1.setOnClickListener(v -> {
             day = days[0];
-            buildRecyclerViewGame();
+
             select(day1);
+            buildRecyclerViewGame();
         });
         day2.setOnClickListener(v -> {
             day = days[1];
-            buildRecyclerViewGame();
+
             select(day2);
+            buildRecyclerViewGame();
         });
         day3.setOnClickListener(v -> {
             day = days[2];
-            buildRecyclerViewGame();
+
             select(day3);
+            buildRecyclerViewGame();
         });
         day4.setOnClickListener(v -> {
             day = days[3];
-            buildRecyclerViewGame();
             select(day4);
+            buildRecyclerViewGame();
         });
         day5.setOnClickListener(v -> {
             day = days[4];
-            buildRecyclerViewGame();
+
             select(day5);
+            buildRecyclerViewGame();
         });
         day6.setOnClickListener(v -> {
             day = days[5];
-            buildRecyclerViewGame();
+
             select(day6);
+            buildRecyclerViewGame();
         });
         day7.setOnClickListener(v -> {
             day = days[6];
-            buildRecyclerViewGame();
+
             select(day7);
+            buildRecyclerViewGame();
         });
 
         return root;
