@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandler {
-    private static final int DATABASE_VERSION = 3;
-    private static final String DATABASE_NAME = "fit_check";
+    private static final int DATABASE_VERSION = 5;
+    private static final String DATABASE_NAME = "fit_check2";
 
     public DatabaseHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -344,7 +344,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     @Override
     public List<UserTasks> getAllUserTasks() {
         List<UserTasks> userTasksList = new ArrayList<UserTasks>();
-        String selectQuery = "SELECT * FROM " + TABLE_USER;
+        String selectQuery = "SELECT * FROM " + TABLE_USER_TASKS;
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -936,11 +936,13 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     private static final String KEY_E_EX_INFO= "ex_info";
     private static final String KEY_E_TYPE_EX= "exercise_type_ex";
     private static final String KEY_E_TYPE_WRK= "exercise_type_work";
+    private static final String KEY_E_TYPE_DATE= "date";
 
 
     private static final String CREATE_EXER_TABLE = "CREATE TABLE " + TABLE_EXER + "(" + KEY_E_ID + " INTEGER PRIMARY KEY," +
             KEY_E_CLIENT_ID + " integer," + KEY_E_UT_ID + " integer," + KEY_E_DONE + " integer,"  + KEY_E_NAME + " text," +
-            KEY_E_EX_INFO + " text," + KEY_E_TYPE_EX + " text, " + KEY_E_TYPE_WRK + " text)";
+            KEY_E_EX_INFO + " text," + KEY_E_TYPE_EX + " text," + KEY_E_TYPE_WRK + " text," + KEY_E_TYPE_DATE + " text)";
+
 
     @Override
     public void addExercise(Exercise exer) {
@@ -954,6 +956,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         values.put(KEY_E_EX_INFO, exer.get_ex_info());
         values.put(KEY_E_TYPE_EX, exer.get_exercise_type_ex());
         values.put(KEY_E_TYPE_WRK, exer.get_exercise_type_work());
+        values.put(KEY_E_TYPE_DATE, exer.get_date());
 
 
 
@@ -965,7 +968,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     public Exercise getExercise(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_EXER, new String[] {KEY_E_ID, KEY_E_CLIENT_ID, KEY_E_UT_ID, KEY_E_DONE, KEY_E_NAME, KEY_E_EX_INFO, KEY_E_TYPE_EX, KEY_E_TYPE_WRK}, KEY_E_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
+        Cursor cursor = db.query(TABLE_EXER, new String[] {KEY_E_ID, KEY_E_CLIENT_ID, KEY_E_UT_ID, KEY_E_DONE, KEY_E_NAME, KEY_E_EX_INFO, KEY_E_TYPE_EX, KEY_E_TYPE_WRK, KEY_E_TYPE_DATE}, KEY_E_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
 
         if (cursor != null){
             cursor.moveToFirst();
@@ -973,7 +976,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
 
         Exercise exer = new Exercise(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
                 Integer.parseInt(cursor.getString(2)), Integer.parseInt(cursor.getString(3)), cursor.getString(4), cursor.getString(5),
-                cursor.getString(6), cursor.getString(7));
+                cursor.getString(6), cursor.getString(7), cursor.getString(8));
 
         return exer;
     }
@@ -999,6 +1002,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
                 exer.set_ex_info(cursor.getString(5));
                 exer.set_exercise_type_ex(cursor.getString(6));
                 exer.set_exercise_type_work(cursor.getString(7));
+                exer.set_date(cursor.getString(8));
 
 
                 ExerciseList.add(exer);
@@ -1031,6 +1035,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         values.put(KEY_E_EX_INFO, exer.get_ex_info());
         values.put(KEY_E_TYPE_EX, exer.get_exercise_type_ex());
         values.put(KEY_E_TYPE_WRK, exer.get_exercise_type_work());
+        values.put(KEY_E_TYPE_DATE, exer.get_date());
+
 
 
         return db.update(TABLE_EXER, values, KEY_E_ID + " = ?", new String[] { String.valueOf(exer.get_id())});

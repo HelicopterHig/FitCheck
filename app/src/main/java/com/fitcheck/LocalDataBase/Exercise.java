@@ -9,19 +9,29 @@ public class Exercise {
     private String _ex_info;
     private String _exercise_type_ex;
     private String _exercise_type_work;
+    private String _date;
 
 
     public Exercise() {}
 
-    public Exercise(int _id, int client_id, int ut_id, int _done, String _name, String _ex_info, String _exercise_type_ex, String _exercise_type_work) {
+    public Exercise(int _id, int _client_id, int _ut_id, int _done, String _name, String _ex_info, String _exercise_type_ex, String _exercise_type_work, String _date) {
         this._id = _id;
-        this._client_id = client_id;
-        this._ut_id = ut_id;
+        this._client_id = _client_id;
+        this._ut_id = _ut_id;
         this._done = _done;
         this._name = _name;
         this._ex_info = _ex_info;
         this._exercise_type_ex = _exercise_type_ex;
         this._exercise_type_work = _exercise_type_work;
+        this._date = _date;
+    }
+
+    public String get_date() {
+        return _date;
+    }
+
+    public void set_date(String _date) {
+        this._date = _date;
     }
 
     public int getClient_id() {

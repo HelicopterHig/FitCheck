@@ -9,7 +9,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fitcheck.LocalDataBase.DatabaseHandler;
+import com.fitcheck.LocalDataBase.Exercise;
 import com.fitcheck.LocalDataBase.User;
+import com.fitcheck.LocalDataBase.UserTasks;
 import com.fitcheck.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -44,7 +46,7 @@ public class CreateTaskActivity extends AppCompatActivity {
     MaterialButton button;
 
     public static String server_name = "94.141.168.185:8008";
-    DatabaseHandler db = new DatabaseHandler(this);
+    DatabaseHandler db = new DatabaseHandler(CreateTaskActivity.this);
 
 
 
@@ -255,6 +257,57 @@ public class CreateTaskActivity extends AppCompatActivity {
                 String myURL = "http://" + server_name + "/insertTsk?task_id="+task_id+ "&date="
                         + date+"&done="+ 0 +"&client_id=" + client_id +"&times="+serverTimes+"&sets="
                         +serverSets + "&weight=" + serverWeight + "&time=" + (-1) + "&meters=" + serverMeters;
+
+                int ut_id;
+                System.out.println("F0");
+
+                //ut_id = db.getUserTasksCount();
+                List<UserTasks> ut = db.getAllUserTasks();
+                System.out.println("F1");
+
+                int sizeUT = 0;
+                int sizeEx = 0;
+                for (UserTasks UT : ut){
+                    sizeUT++;
+                    System.out.println("DDD " + UT.get_id());
+                }
+                System.out.println("F1");
+                db.addUserTask(new UserTasks(sizeUT+ 1, task_id, date, 0, client_id, serverTimes, serverSets, serverWeight, "", serverMeters));
+
+                System.out.println("F2");
+
+                String vid;
+                String znac;
+                if (serverSets != -1) {
+                    vid = "повторения";
+                    znac = String.valueOf(serverSets);
+                }
+                else {
+                    if (serverMeters != -1) {
+                        vid = "метры/минуты";
+                        znac = String.valueOf(serverMeters) + "/" + String.valueOf(serverTimes);
+                    }
+                    else {
+                        vid = "вес/повторения";
+                        znac = String.valueOf(serverWeight) + "/" + String.valueOf(serverTimes);
+                    }
+                }
+
+                System.out.println("F3");
+
+                //int i = db.getExerciseCount();
+                List<Exercise> ex = db.getAllExercise();
+                for (Exercise EX : ex){
+                    sizeEx++;
+                    System.out.println("DDD " + EX.get_id());
+                }
+                System.out.println("F4");
+
+                String dateT = date.substring(0, 10);
+
+                db.addExercise(new Exercise(sizeEx + 1, client_id, sizeUT + 1, 0, name, znac, vid, type, dateT));
+                System.out.println("F5");
+
 
                 System.out.println(myURL);
 

@@ -14,7 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.fitcheck.LocalDataBase.DatabaseHandler;
+import com.fitcheck.LocalDataBase.Exercise;
 import com.fitcheck.LocalDataBase.User;
+import com.fitcheck.LocalDataBase.UserTasks;
 import com.fitcheck.MainMenuActivity;
 import com.fitcheck.R;
 import com.fitcheck.model.User_in;
@@ -47,6 +49,28 @@ public class LoginFragment extends Fragment {
     private static String TAG_PASSWORD = "password";
     private static String TAG_PHONE = "phone_num";
     private static String TAG_GENDER = "gender";
+
+
+    private static String TAG_UT_ID = "id";
+    private static String TAG_TASK_ID = "task_id";
+    private static String TAG_DONE = "done";
+    private static String TAG_CLIENT_ID = "client_id";
+    private static String TAG_TIMES = "times";
+    private static String TAG_SETS = "sets";
+    private static String TAG_WEIGHT = "weight";
+    private static String TAG_METERS = "meters";
+    private static String TAG_DATE = "date";
+    private static String TAG_TIME = "time";
+
+    private static String TAG_T_ID = "id";
+    private static String TAG_TYPE = "type";
+    private static String TAG_SUBTYPE = "subtype";
+    private static String TAG_NAME2 = "name";
+
+    int ut_id, task_id, done, client_id, times,sets, weight, meters;
+    String date, time;
+    int t_id;
+    String name2, type, subypte;
     //это для бд которой нет))
     //для таблицы user_token
 
@@ -119,12 +143,21 @@ public class LoginFragment extends Fragment {
 
         if (err == 0) {
 
+            db.deleteAllUser();
             user = new User_in(email,pass);
             try {
                 new SendLogin().execute();
             }catch (Exception e){
                 e.printStackTrace();
             }
+
+            Intent intent = new Intent(getActivity(), MainMenuActivity.class);
+            try {
+                new SendUT().execute();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            startActivity(intent);
 
         } else {
             //showSnackBarMessage("Enter Valid Details !");
@@ -194,8 +227,108 @@ public class LoginFragment extends Fragment {
                         System.out.println(log);
 
                     }
-                    Intent intent = new Intent(getActivity(), MainMenuActivity.class);
-                    startActivity(intent);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        private String convertStreamToString(InputStream stream) {
+            java.util.Scanner s = new java.util.Scanner(stream).useDelimiter("\\A");
+            return s.hasNext() ? s.next() : "";
+        }
+    }
+
+    class SendUT extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+
+                //Нужно email user'a
+                user_local = db.getAllUser();
+                for (User us : user_local){
+                    email = us.get_email();
+                }
+
+                //Считывааем UserTasks
+                //String day = "2019-12-20";
+                String myURL = "http://" + server_name +"/utasks?email=" + email;
+
+                try {
+                    URL url = new URL(myURL);
+
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("GET");
+                    conn.setDoInput(true);
+
+                    conn.connect();
+
+                    InputStream stream = conn.getInputStream();
+
+                    String data = convertStreamToString(stream);
+
+                    JSONArray utask = new JSONArray(data);
+
+
+
+                    //Несколько раз
+                    for (int i = 0; i < utask.length(); i++) {
+                        JSONObject schedule = utask.getJSONObject(i);
+
+                        ut_id = Integer.parseInt(schedule.getString(TAG_UT_ID));
+                        task_id = Integer.parseInt(schedule.getString(TAG_TASK_ID));
+                        date = schedule.getString(TAG_DATE);
+                        done = Integer.parseInt(schedule.getString(TAG_DONE));
+                        client_id = Integer.parseInt(schedule.getString(TAG_CLIENT_ID));
+                        times = Integer.parseInt(schedule.getString(TAG_TIMES));
+                        sets = Integer.parseInt(schedule.getString(TAG_SETS));
+                        weight = Integer.parseInt(schedule.getString(TAG_WEIGHT));
+                        time = schedule.getString(TAG_TIME);
+                        meters = Integer.parseInt(schedule.getString(TAG_METERS));
+
+                        db.addUserTask(new UserTasks(ut_id, task_id, date, done, client_id, times, sets, weight, time, meters));
+
+                        System.out.println("Jesus " + (i+1));
+
+                        //Считывает tasks
+                        t_id = Integer.parseInt(schedule.getString(TAG_T_ID));
+                        name2 = schedule.getString(TAG_NAME2);
+                        type = schedule.getString(TAG_TYPE);
+                        subypte = schedule.getString(TAG_SUBTYPE);
+
+                        //Условия для нескольких разных типов
+                        String vid; //Вид упражнения (повторения или метры/минуты и т.д)
+                        String znac; //Значения для вывода
+
+                        if (sets != -1) {
+                            vid = "повторения";
+                            znac = String.valueOf(sets);
+                        }
+                        else {
+                            if (meters != -1) {
+                                vid = "метры/минуты";
+                                znac = String.valueOf(meters) + "/" + String.valueOf(times);
+                            }
+                            else {
+                                vid = "вес/повторения";
+                                znac = String.valueOf(weight) + "/" + String.valueOf(times);
+                            }
+                        }
+
+                        String dateT = date.substring(0, 10);
+                        System.out.println("DATE " + dateT);
+                        db.addExercise(new Exercise(i, client_id, ut_id, done, name2, znac, vid, type, dateT));
+
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

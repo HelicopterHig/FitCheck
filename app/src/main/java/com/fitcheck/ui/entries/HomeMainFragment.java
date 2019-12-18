@@ -75,7 +75,7 @@ public class HomeMainFragment extends Fragment {
     DatabaseHandler db;
     List<User> user_local;
     String email;
-    List<Exercise> enote;
+
 
     //Переменные считывание с сервера
     int ut_id, task_id, done, client_id, times,sets, weight, meters;
@@ -111,7 +111,7 @@ public class HomeMainFragment extends Fragment {
         entriesViewModel = ViewModelProviders.of(this).get(HomeMainViewModel.class);
         root = inflater.inflate(R.layout.fragment_home_main, container, false);
         final TextView textView = root.findViewById(R.id.text_home_main);
-
+        db=new DatabaseHandler(root.getContext());
 
         day1 = root.findViewById(R.id.main_date_rectangle_1);
         day2 = root.findViewById(R.id.main_date_rectangle_2);
@@ -129,10 +129,12 @@ public class HomeMainFragment extends Fragment {
 
 
 
-        db=new DatabaseHandler(root.getContext());
-        db.deleteAllExercise();
-        db.deleteAllUserTasks();
 
+
+        day = formattedDate;
+        System.out.println("ALL" + day);
+
+        onResume();
 
         initCalendar();
         day1.setOnClickListener(v -> {
@@ -174,36 +176,45 @@ public class HomeMainFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        buildRecyclerViewGame();
+    }
+
+
 
     private void createListExercise() {
         itemExerciseArrayList = new ArrayList<>();
 
-       try {
-            new SendUT().execute();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//       try {
+//            new SendUT().execute();
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 
-        String exname, exinfo, extypeex, extypewrk;
+        String exname, exinfo, extypeex, extypewrk, exdate;
         int exdone, exid;
+        System.out.println("Mizuri1");
 
-        enote = db.getAllExercise();
-        db.deleteAllExercise();
-        db.deleteAllUserTasks();
+        List<Exercise> enote = db.getAllExercise();
+        List<UserTasks> begemote = db.getAllUserTasks();
         for (Exercise ex: enote) {
+            System.out.println("Mizuri2");
+
             exname = ex.get_name();
             exinfo = ex.get_ex_info();
             extypeex = ex.get_exercise_type_ex();
             extypewrk = ex.get_exercise_type_work();
             exdone = ex.get_done();
             exid = ex.get_id();
-            itemExerciseArrayList.add((new ElementExercise(exname, exinfo, extypeex, extypewrk, exdone, exid)));
+            exdate = ex.get_date();
+            System.out.println("DATE2 " + exdate + " " + day);
+            if (exdate.equals(day)) {
+                itemExerciseArrayList.add((new ElementExercise(exname, exinfo, extypeex, extypewrk, exdone, exid)));
+            }
         }
 
-//       itemExerciseArrayList.add(new ElementExercise("Пресс", "15/2", "кол-во/подходы", "Аеробика", 0));
-//        itemExerciseArrayList.add(new ElementExercise("Пробежка", "5/20", "км/минуты", "Хуеробика", 1));
-//        itemExerciseArrayList.add(new ElementExercise("Подтягивания", "5/7", "кол-во/подходы", "Имассоэробика", 0));
-//        itemExerciseArrayList.add(new ElementExercise("Сгибание рук с гантелями на скамье", "5/7", "кол-во/подходы", "Имассоэробика", 1));
     }
 
     private void buildRecyclerViewGame(){
@@ -252,104 +263,7 @@ public class HomeMainFragment extends Fragment {
     }
 
 
-    class SendUT extends AsyncTask<Void, Void, Void> {
 
-       @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-
-                //Нужно email user'a
-                user_local = db.getAllUser();
-                for (User us : user_local){
-                    email = us.get_email();
-                }
-
-                //Считывааем UserTasks
-                String myURL = "http://" + server_name +"/utasks?email=" + email +"&date=" + day;
-
-                try {
-                    URL url = new URL(myURL);
-
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setReadTimeout(10000);
-                    conn.setConnectTimeout(15000);
-                    conn.setRequestMethod("GET");
-                    conn.setDoInput(true);
-
-                    conn.connect();
-
-                    InputStream stream = conn.getInputStream();
-
-                    String data = convertStreamToString(stream);
-
-                    JSONArray utask = new JSONArray(data);
-
-                    db.deleteAllExercise();
-                    db.deleteAllUserTasks();
-
-                    //Несколько раз
-                    for (int i = 0; i < utask.length(); i++) {
-                        JSONObject schedule = utask.getJSONObject(i);
-
-                        ut_id = Integer.parseInt(schedule.getString(TAG_UT_ID));
-                        task_id = Integer.parseInt(schedule.getString(TAG_TASK_ID));
-                        date = schedule.getString(TAG_DATE);
-                        done = Integer.parseInt(schedule.getString(TAG_DONE));
-                        client_id = Integer.parseInt(schedule.getString(TAG_CLIENT_ID));
-                        times = Integer.parseInt(schedule.getString(TAG_TIMES));
-                        sets = Integer.parseInt(schedule.getString(TAG_SETS));
-                        weight = Integer.parseInt(schedule.getString(TAG_WEIGHT));
-                        time = schedule.getString(TAG_TIME);
-                        meters = Integer.parseInt(schedule.getString(TAG_METERS));
-
-                        db.addUserTask(new UserTasks(ut_id, task_id, date, done, client_id, times, sets, weight, time, meters));
-
-                        System.out.println("Jesus " + (i+1));
-
-                        //Считывает tasks
-                        t_id = Integer.parseInt(schedule.getString(TAG_T_ID));
-                        name = schedule.getString(TAG_NAME);
-                        type = schedule.getString(TAG_TYPE);
-                        subypte = schedule.getString(TAG_SUBTYPE);
-
-                        //Условия для нескольких разных типов
-                        String vid; //Вид упражнения (повторения или метры/минуты и т.д)
-                        String znac; //Значения для вывода
-
-                        if (sets != -1) {
-                            vid = "повторения";
-                            znac = String.valueOf(sets);
-                        }
-                        else {
-                            if (meters != -1) {
-                                vid = "метры/минуты";
-                                znac = String.valueOf(meters) + "/" + String.valueOf(times);
-                            }
-                            else {
-                                vid = "вес/повторения";
-                                znac = String.valueOf(weight) + "/" + String.valueOf(times);
-                            }
-                        }
-
-                        db.addExercise(new Exercise(i, client_id, ut_id, done, name, znac, vid, type));
-
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        private String convertStreamToString(InputStream stream) {
-            java.util.Scanner s = new java.util.Scanner(stream).useDelimiter("\\A");
-            return s.hasNext() ? s.next() : "";
-        }
-    }
 
     private void showEmptyView() {
 

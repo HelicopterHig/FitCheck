@@ -422,7 +422,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_exercise"
-        android:layout_height="330dp"
+        android:layout_height="500dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
