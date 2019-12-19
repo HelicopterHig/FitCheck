@@ -1,4 +1,4 @@
 **Auth**
 
-![alt tag](https://raw.github.com/Minecraft/app/src/main/res/drawable/auth.jpg)
+![alt tag](https://github.com/HelicopterHig/Minecraft/blob/master/app/src/main/res/drawable/auth.jpg)
 <br/><br/>
