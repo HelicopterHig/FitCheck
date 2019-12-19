@@ -1,4 +1,4 @@
-##Fitness app. Developed by students IKBO-03-17
+**Fitness app. Developed by students IKBO-03-17**
 - [qSonic](https://github.com/qSonic) - Bashkin Anton
 - [HelicoterHig](https://github.com/HelicopterHig) - Sagdeev Rustam
 - [martel42](https://github.com/martel42) - Kovalev Maxim
