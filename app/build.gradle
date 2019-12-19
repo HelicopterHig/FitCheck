@@ -63,4 +63,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-vision:19.0.0'
     implementation 'com.jaeger.statusbarutil:library:1.4.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.vivchar:RendererRecyclerViewAdapter:2.8.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
 }

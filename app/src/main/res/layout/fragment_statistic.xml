@@ -1,34 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
 
-
-    <ImageView
-        android:id="@+id/imageView3"
+    <LinearLayout
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="99dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
 
-    <TextView
-        android:id="@+id/text_statistic"
+            <EditText
+                android:id="@+id/calories"
+                android:layout_width="263dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:autofillHints=""
+                android:hint="enter_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/proteins"
+                android:layout_width="260dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="0dp"
+                android:autofillHints=""
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calories" />
+
+            <EditText
+                android:id="@+id/fats"
+                android:layout_width="259dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:autofillHints=""
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/proteins" />
+
+            <EditText
+                android:id="@+id/carbonohydrates"
+                android:layout_width="259dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:autofillHints=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fats"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="90dp"
+                android:layout_height="43dp"
+                android:text="Button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fats"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_height="match_parent"/>
 
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:text="NO DATA"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/mp_groupBarChart"
+        android:layout_width="match_parent"
+        android:layout_height="202dp" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chartBar"
+        android:layout_width="match_parent"
+        android:layout_height="202dp" /-->
+
+</LinearLayout>

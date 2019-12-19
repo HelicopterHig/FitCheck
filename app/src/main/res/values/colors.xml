@@ -11,4 +11,16 @@
     <color name="colorWhite">#ffffff</color>
     <color name="active_tab_color">#2f3281</color>
     <color name="color_more">#37474f</color>
+    <color name='gradient_start'>#4A148C</color>
+    <color name='gradient_end'>#AD1457</color>
+    <color name='gradient_start2'>#D1C4E9</color>
+    <color name='gradient_end2'>#6200EA</color>
+    <color name='gradient_start3'>#8e54e9</color>
+    <color name='gradient_end3'> #4776e6</color>
+    <color name='gradient_start4'>#FF512F</color>
+    <color name='gradient_end4'> #dd2476</color>
+
+
+
+
 </resources>

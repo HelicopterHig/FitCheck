@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -85,8 +84,8 @@ public class MainMenuActivity extends AppCompatActivity {
                 if (x1 > x2)
                 {
                     //  Toast.makeText(this, "Right to Left Swap Performed", Toast.LENGTH_LONG).show();
-                    Intent i = new Intent(MainMenuActivity.this,QrCodeActivity.class);
-                    startActivity(i);
+                    //Intent i = new Intent(MainMenuActivity.this,QrCodeActivity.class);
+                    //startActivity(i);
 
                 }
 // if UP to Down sweep event on screen

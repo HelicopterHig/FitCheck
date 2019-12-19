@@ -1,4 +1,4 @@
-package com.fitcheck;
+/*package com.fitcheck;
 
 
 import android.Manifest;
@@ -239,3 +239,4 @@ public class QrCodeActivity extends AppCompatActivity {
     }
 }
 
+*/
