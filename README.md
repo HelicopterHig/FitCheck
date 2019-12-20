@@ -10,3 +10,4 @@
 
 ![alt tag](https://github.com/HelicopterHig/Minecraft/blob/master/app/src/main/res/drawable/gauth.jpg)
 <br/><br/>
+This project is protecting by License
