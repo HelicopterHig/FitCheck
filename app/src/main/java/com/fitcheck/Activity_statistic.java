@@ -2,9 +2,12 @@ package com.fitcheck;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.fitcheck.LocalDataBase.DatabaseHandler;
+import com.fitcheck.LocalDataBase.Stats;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -24,14 +27,28 @@ public class Activity_statistic extends AppCompatActivity {
     BarChart mpGroupBar;
     BarChart chartBar;
     BarChart ch;
+    DatabaseHandler db;
+    List<Stats> stats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistic);
 
+        db = new DatabaseHandler(this);
+        stats = db.getAllStats();
 
 
+        final TextView textView1 = findViewById(R.id.callTod);
+        final TextView textView2 = findViewById(R.id.callAll);
+        final TextView textView3 = findViewById(R.id.belAll);
+        final TextView textView4 = findViewById(R.id.zirAll);
+        final TextView textView5 = findViewById(R.id.uglAll);
+
+        int callT = 0, callA = 0, bel = 0, zir = 0, ugl = 0;
+
+        Bundle extras = getIntent().getExtras();
+        callT = extras.getInt("call");
 
 
         mpGroupBar = (BarChart) findViewById(R.id.chart1);
@@ -40,13 +57,14 @@ public class Activity_statistic extends AppCompatActivity {
 
 
         List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0f, 1500f, "Sunday"));
-        entries.add(new BarEntry(1f, 1000f, "Monday"));
-        entries.add(new BarEntry(2f, 500f, "Tuesday"));
-        entries.add(new BarEntry(3f, 1000f, "Wednesday"));
-        entries.add(new BarEntry(4f, 2000f, "Thursday"));
-        entries.add(new BarEntry(5f, 900f, "Friday"));
-        entries.add(new BarEntry(6f, 1450f, "Saturday"));
+
+        int count = 0;
+        for (Stats st : stats){
+            count++;
+            entries.add(new BarEntry(count, st.get_squirrels(), String.valueOf(count)));
+            bel+=st.get_squirrels();
+        }
+
 
         int startColor1 = getResources().getColor(R.color.gradient_start);
         int endColor1 = getResources().getColor(R.color.gradient_end);
@@ -61,14 +79,10 @@ public class Activity_statistic extends AppCompatActivity {
         ArrayList<String> barFactors = new ArrayList<>();
         int size = barFactors.size();
         System.out.println("size of before after  " + size);
-        barFactors.add("Mon");
+        for (int i = 0; i < size; i++){
+            barFactors.add(String.valueOf(i+1));
+        }
 
-        barFactors.add("Tue");
-        barFactors.add("Wed");
-        barFactors.add("Thu");
-        barFactors.add("Fri");
-        barFactors.add("Sat");
-        barFactors.add("Sun");
         size = barFactors.size();
         System.out.println("size of  array after  " + size);
 
@@ -84,7 +98,7 @@ public class Activity_statistic extends AppCompatActivity {
         data.setValueTextSize(12);
         Description description = new Description();
         description.setTextColor(R.color.colorPrimary);
-        description.setText("Current values calories");
+        description.setText("Белки");
 
         //description.setTextSize(14);
         mpGroupBar.setDescription(description);
@@ -120,13 +134,12 @@ public class Activity_statistic extends AppCompatActivity {
 
 
         List<BarEntry> entries1 = new ArrayList<>();
-        entries1.add(new BarEntry(0f, 300f, "Sunday"));
-        entries1.add(new BarEntry(1f, 100f, "Monday"));
-        entries1.add(new BarEntry(2f, 50f, "Tuesday"));
-        entries1.add(new BarEntry(3f, 100f, "Wednesday"));
-        entries1.add(new BarEntry(4f, 200f, "Thursday"));
-        entries1.add(new BarEntry(5f, 90f, "Friday"));
-        entries1.add(new BarEntry(6f, 150f, "Saturday"));
+        count = 0;
+        for (Stats st : stats){
+            count++;
+            entries1.add(new BarEntry(count, st.get_fats(), String.valueOf(count)));
+            zir+=st.get_fats();
+        }
 
         int startColor2 = getResources().getColor(R.color.gradient_start2);
         int endColor2 = getResources().getColor(R.color.gradient_end2);
@@ -141,14 +154,10 @@ public class Activity_statistic extends AppCompatActivity {
         ArrayList<String> barFactors2 = new ArrayList<>();
         int size2 = barFactors2.size();
         System.out.println("size of before after  " + size2);
-        barFactors2.add("Mon");
+        for (int i = 0; i < size2; i++){
+            barFactors.add(String.valueOf(i+1));
+        }
 
-        barFactors2.add("Tue");
-        barFactors2.add("Wed");
-        barFactors2.add("Thu");
-        barFactors2.add("Fri");
-        barFactors2.add("Sat");
-        barFactors2.add("Sun");
         size2 = barFactors2.size();
         System.out.println("size of  array after  " + size2);
 
@@ -175,7 +184,7 @@ public class Activity_statistic extends AppCompatActivity {
         data2.setValueTextSize(12);
         Description description2 = new Description();
         description2.setTextColor(R.color.colorBlack);
-        description2.setText("Current values FATS");
+        description2.setText("Жиры");
         //description.setTextSize(14);
         chartBar.setDescription(description2);
         chartBar.setData(data2);
@@ -209,13 +218,11 @@ public class Activity_statistic extends AppCompatActivity {
 
 
         List<BarEntry> entries3 = new ArrayList<>();
-        entries3.add(new BarEntry(0f, 120f, "Sunday"));
-        entries3.add(new BarEntry(1f, 10f, "Monday"));
-        entries3.add(new BarEntry(2f, 140f, "Tuesday"));
-        entries3.add(new BarEntry(3f, 110f, "Wednesday"));
-        entries3.add(new BarEntry(4f, 10f, "Thursday"));
-        entries3.add(new BarEntry(5f, 70f, "Friday"));
-        entries3.add(new BarEntry(6f, 50f, "Saturday"));
+        for (Stats st : stats){
+            count++;
+            entries3.add(new BarEntry(count, st.get_carbohydrates(), String.valueOf(count)));
+            ugl+=st.get_carbohydrates();
+        }
 
         int startColor3 = getResources().getColor(R.color.gradient_start3);
         int endColor3 = getResources().getColor(R.color.gradient_end3);
@@ -230,14 +237,9 @@ public class Activity_statistic extends AppCompatActivity {
         ArrayList<String> barFactors4 = new ArrayList<>();
         int size4 = barFactors4.size();
         System.out.println("size of before after  " + size4);
-        barFactors4.add("Mon");
-
-        barFactors4.add("Tue");
-        barFactors4.add("Wed");
-        barFactors4.add("Thu");
-        barFactors4.add("Fri");
-        barFactors4.add("Sat");
-        barFactors4.add("Sun");
+        for (int i = 0; i < size4; i++){
+            barFactors.add(String.valueOf(i+1));
+        }
         size4 = barFactors4.size();
         System.out.println("size of  array after  " + size4);
 
@@ -248,6 +250,15 @@ public class Activity_statistic extends AppCompatActivity {
         XAxis xxAxis4 = ch.getXAxis();
         xxAxis4.setGranularity(1f);
         xxAxis4.setGranularityEnabled(true);
+
+        callA = ugl * 4 + bel * 4 + zir * 9;
+
+        textView1.setText("Каллорий за прием: "+callT);
+        textView2.setText("Всего каллорий: "+callA);
+        textView3.setText("Всего белокв: "+bel);
+        textView4.setText("Всего жиров: "+zir);
+        textView5.setText("Всего углеводов: "+ugl);
+
 
         /*LimitLine ll1 = new LimitLine(150f, "");
         ll1.setLineWidth(4f);
@@ -264,7 +275,7 @@ public class Activity_statistic extends AppCompatActivity {
         data4.setValueTextSize(12);
         Description description4 = new Description();
         description4.setTextColor(R.color.colorBlack);
-        description4.setText("Current values CARBONOHIDRATES");
+        description4.setText("Углеводы");
         //description.setTextSize(14);
         ch.setDescription(description4);
         ch.setData(data4);

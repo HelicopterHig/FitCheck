@@ -45,7 +45,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class CalendarFragment extends Fragment{
+public class InsertFragment extends Fragment{
 
     private CalendarViewModel calendarViewModel;
 
@@ -315,7 +315,7 @@ public class CalendarFragment extends Fragment{
                     for (int i = 0; i < jtype.length(); i++) {
                         JSONObject schedule = jtype.getJSONObject(i);
 
-                       // dataSubtype[i] = schedule.getString(TAG_SUBTYPE);
+                        // dataSubtype[i] = schedule.getString(TAG_SUBTYPE);
 
 
                     }

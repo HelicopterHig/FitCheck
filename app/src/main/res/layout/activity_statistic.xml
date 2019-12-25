@@ -20,6 +20,61 @@
         android:layout_width="match_parent"
         android:layout_height="202dp" />
 
+    <TextView
+    android:id="@+id/callTod"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Today_is_DATE"
+    android:textAlignment="center"
+    android:fontFamily="@font/roboto_thin"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    />
+
+    <TextView
+        android:id="@+id/callAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today_is_DATE"
+        android:textAlignment="center"
+        android:fontFamily="@font/roboto_thin"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/belAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today_is_DATE"
+        android:textAlignment="center"
+        android:fontFamily="@font/roboto_thin"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/zirAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today_is_DATE"
+        android:textAlignment="center"
+        android:fontFamily="@font/roboto_thin"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/uglAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today_is_DATE"
+        android:textAlignment="center"
+        android:fontFamily="@font/roboto_thin"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        />
+
+
+
+
 
 
 

@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/navigation_calendar"
-        android:name="com.fitcheck.ui.calendar.CalendarFragment"
+        android:name="com.fitcheck.ui.calendar.InsertFragment"
         android:label="@string/title_calendar"
         android:fontFamily="@font/roboto"
         tools:layout="@layout/fragment_calendar" />
