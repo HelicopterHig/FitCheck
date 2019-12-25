@@ -38,11 +38,11 @@ public  class StatisticFragment extends Fragment {
   //  private RecyclerView.LayoutManager layoutManager;
     private ExerciseAdapter gameAdapter;
     //private ArrayList<ElementExercise> itemExerciseArrayList;
-
+    List<BarEntry> entries3;
     BarChart mpGroupBar;
     ListView lv;
     BarChart chartBar;
-
+    List<BarEntry> entries;
     EditText calories;
     Button button;
 
@@ -81,14 +81,11 @@ public  class StatisticFragment extends Fragment {
         }
 
 
-
             lv = (ListView) view.findViewById(R.id.listView1);
-
-
+        entries = new ArrayList<>();
+        entries.add((new BarEntry(0f, 1500f, "Sunday")));
+        entries.add((new BarEntry(1f, 500f, "Sunday")));
         ArrayList<ChartItem> list = new ArrayList<>();
-
-
-
 
 
                 list.add(new BarChartItem(generateDataBar( 1), getContext()));
@@ -101,10 +98,6 @@ public  class StatisticFragment extends Fragment {
 
         ChartDataAdapter cda = new ChartDataAdapter(getActivity(), list);
         lv.setAdapter(cda);
-
-
-
-
 
 
 
@@ -193,14 +186,14 @@ public  class StatisticFragment extends Fragment {
 
 
 
-        List<BarEntry> entes = new ArrayList<>();
-        entes.add(new BarEntry(0f, 300f, "Sunday"));
-        entes.add(new BarEntry(1f, 100f, "Monday"));
-        entes.add(new BarEntry(2f, 50f, "Tuesday"));
-        entes.add(new BarEntry(3f, 100f, "Wednesday"));
-        entes.add(new BarEntry(4f, 200f, "Thursday"));
-        entes.add(new BarEntry(5f, 90f, "Friday"));
-        entes.add(new BarEntry(6f, 150f, "Saturday"));
+        List<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(0f, 300f, "Sunday"));
+        entries.add(new BarEntry(1f, 100f, "Monday"));
+        entries.add(new BarEntry(2f, 50f, "Tuesday"));
+        entries.add(new BarEntry(3f, 100f, "Wednesday"));
+        entries.add(new BarEntry(4f, 200f, "Thursday"));
+        entries.add(new BarEntry(5f, 90f, "Friday"));
+        entries.add(new BarEntry(6f, 150f, "Saturday"));
 
         int startColor2 = getResources().getColor(R.color.gradient_start2);
         int endColor2 = getResources().getColor(R.color.gradient_end2);
@@ -208,7 +201,7 @@ public  class StatisticFragment extends Fragment {
         List<GradientColor> gradientColors2 = new ArrayList<>();
         gradientColors2.add(new GradientColor(startColor2, endColor2));
 
-        BarDataSet aSet = new BarDataSet(entes, "Marks");
+        BarDataSet aSet = new BarDataSet(entries, "Marks");
         aSet.setGradientColors(gradientColors2);
 
 
@@ -369,14 +362,15 @@ public  class StatisticFragment extends Fragment {
             entries.add(new BarEntry(d.get_diet_id(), d.get_calories(), "Wednesday"));
 
         }*/
-        List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0f, 1500f, "Sunday"));
-        entries.add(new BarEntry(1f, 1000f, "Monday"));
-        entries.add(new BarEntry(2, 500f, "Tuesday"));
-        entries.add(new BarEntry(3, 1000f, "Wednesday"));
-        entries.add(new BarEntry(4f, 2000f, "Thursday"));
-        entries.add(new BarEntry(5f, 900f, "Friday"));
-        entries.add(new BarEntry(6f, 1450f, "Saturday"));
+
+
+//        entries.add(new BarEntry(0f, 1500f, "Sunday"));
+//        entries.add(new BarEntry(1f, 1000f, "Monday"));
+//        entries.add(new BarEntry(2, 500f, "Tuesday"));
+//        entries.add(new BarEntry(3, 1000f, "Wednesday"));
+//        entries.add(new BarEntry(4f, 2000f, "Thursday"));
+//        entries.add(new BarEntry(5f, 900f, "Friday"));
+//        entries.add(new BarEntry(6f, 1450f, "Saturday"));
 
         int startColor1 = getResources().getColor(R.color.gradient_start);
         int endColor1 = getResources().getColor(R.color.gradient_end);
@@ -538,14 +532,14 @@ public  class StatisticFragment extends Fragment {
         // return cd;
 
 
-        List<BarEntry> entes = new ArrayList<>();
-        entes.add(new BarEntry(0f, 100f, "Sunday"));
-        entes.add(new BarEntry(1f, 10f, "Monday"));
-        entes.add(new BarEntry(2f, 15f, "Tuesday"));
-        entes.add(new BarEntry(3f, 60f, "Wednesday"));
-        entes.add(new BarEntry(4f, 70f, "Thursday"));
-        entes.add(new BarEntry(5f, 90f, "Friday"));
-        entes.add(new BarEntry(6f, 67f, "Saturday"));
+        List<BarEntry> entries2 = new ArrayList<>();
+//        entries.add(new BarEntry(0f, 100f, "Sunday"));
+//        entries.add(new BarEntry(1f, 10f, "Monday"));
+//        entries.add(new BarEntry(2f, 15f, "Tuesday"));
+//        entries.add(new BarEntry(3f, 60f, "Wednesday"));
+//        entries.add(new BarEntry(4f, 70f, "Thursday"));
+//        entries.add(new BarEntry(5f, 90f, "Friday"));
+//        entries.add(new BarEntry(6f, 67f, "Saturday"));
 
         int startColor2 = getResources().getColor(R.color.gradient_start2);
         int endColor2 = getResources().getColor(R.color.gradient_end2);
@@ -553,7 +547,7 @@ public  class StatisticFragment extends Fragment {
         List<GradientColor> gradientColors2 = new ArrayList<>();
         gradientColors2.add(new GradientColor(startColor2, endColor2));
 
-        BarDataSet aSet = new BarDataSet(entes, "Жиры");
+        BarDataSet aSet = new BarDataSet(entries2, "Жиры");
         aSet.setGradientColors(gradientColors2);
         BarData data2 = new BarData(aSet);
         data2.setBarWidth(0.9f); // set custom bar width
@@ -579,14 +573,15 @@ public  class StatisticFragment extends Fragment {
         // return cd;
 
 
-        List<BarEntry> entes = new ArrayList<>();
-        entes.add(new BarEntry(0f, 200f, "Sunday"));
-        entes.add(new BarEntry(1f, 300f, "Monday"));
-        entes.add(new BarEntry(2f, 160f, "Tuesday"));
-        entes.add(new BarEntry(3f, 100f, "Wednesday"));
-        entes.add(new BarEntry(4f, 220f, "Thursday"));
-        entes.add(new BarEntry(5f, 111f, "Friday"));
-        entes.add(new BarEntry(6f, 89f, "Saturday"));
+
+        entries3 = new ArrayList<>();
+//        entries.add(new BarEntry(0f, 200f, "Sunday"));
+//        entries.add(new BarEntry(1f, 300f, "Monday"));
+//        entries.add(new BarEntry(2f, 160f, "Tuesday"));
+//        entries.add(new BarEntry(3f, 100f, "Wednesday"));
+//        entries.add(new BarEntry(4f, 220f, "Thursday"));
+//        entries.add(new BarEntry(5f, 111f, "Friday"));
+//        entries.add(new BarEntry(6f, 89f, "Saturday"));
 
         int startColor2 = getResources().getColor(R.color.gradient_start3);
         int endColor2 = getResources().getColor(R.color.gradient_end3);
@@ -594,7 +589,7 @@ public  class StatisticFragment extends Fragment {
         List<GradientColor> gradientColors2 = new ArrayList<>();
         gradientColors2.add(new GradientColor(startColor2, endColor2));
 
-        BarDataSet aSet = new BarDataSet(entes, "Белки");
+        BarDataSet aSet = new BarDataSet(entries3, "Белки");
         aSet.setGradientColors(gradientColors2);
         BarData data2 = new BarData(aSet);
         data2.setBarWidth(0.9f); // set custom bar width
@@ -620,14 +615,14 @@ public  class StatisticFragment extends Fragment {
         // return cd;
 
 
-        List<BarEntry> entes = new ArrayList<>();
-        entes.add(new BarEntry(0f, 3000f, "Sunday"));
-        entes.add(new BarEntry(1f, 1000f, "Monday"));
-        entes.add(new BarEntry(2f, 2000f, "Tuesday"));
-        entes.add(new BarEntry(3f, 1400f, "Wednesday"));
-        entes.add(new BarEntry(4f, 500f, "Thursday"));
-        entes.add(new BarEntry(5f, 2000f, "Friday"));
-        entes.add(new BarEntry(6f, 1679f, "Saturday"));
+        List<BarEntry> entries4 = new ArrayList<>();
+//        entries.add(new BarEntry(0f, 3000f, "Sunday"));
+//        entries.add(new BarEntry(1f, 1000f, "Monday"));
+//        entries.add(new BarEntry(2f, 2000f, "Tuesday"));
+//        entries.add(new BarEntry(3f, 1400f, "Wednesday"));
+//        entries.add(new BarEntry(4f, 500f, "Thursday"));
+//        entries.add(new BarEntry(5f, 2000f, "Friday"));
+//        entries.add(new BarEntry(6f, 1679f, "Saturday"));
 
         int startColor2 = getResources().getColor(R.color.gradient_start4);
         int endColor2 = getResources().getColor(R.color.gradient_end4);
@@ -635,7 +630,7 @@ public  class StatisticFragment extends Fragment {
         List<GradientColor> gradientColors2 = new ArrayList<>();
         gradientColors2.add(new GradientColor(startColor2, endColor2));
 
-        BarDataSet aSet = new BarDataSet(entes, "Калории");
+        BarDataSet aSet = new BarDataSet(entries4, "Калории");
         aSet.setGradientColors(gradientColors2);
         BarData data2 = new BarData(aSet);
         data2.setBarWidth(0.9f); // set custom bar width
