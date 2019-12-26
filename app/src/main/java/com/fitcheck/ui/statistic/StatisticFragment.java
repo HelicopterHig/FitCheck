@@ -2,6 +2,7 @@ package com.fitcheck.ui.statistic;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.fitcheck.Activity_statistic;
 import com.fitcheck.LocalDataBase.DatabaseHandler;
 import com.fitcheck.R;
 import com.fitcheck.ui.elementAdapter.ExerciseAdapter;
@@ -68,6 +70,17 @@ public  class StatisticFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.fragment_statistic, container, false);
+
+
+        Button button = (Button) view.findViewById(R.id.open_next);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent(getActivity(), Activity_statistic.class);
+                getActivity().startActivity(intent);
+            }
+        });
 
         // Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/roboto_thin.xml");
         db =  new DatabaseHandler(view.getContext());
@@ -363,14 +376,14 @@ public  class StatisticFragment extends Fragment {
 
         }*/
 
-
-//        entries.add(new BarEntry(0f, 1500f, "Sunday"));
-//        entries.add(new BarEntry(1f, 1000f, "Monday"));
-//        entries.add(new BarEntry(2, 500f, "Tuesday"));
-//        entries.add(new BarEntry(3, 1000f, "Wednesday"));
-//        entries.add(new BarEntry(4f, 2000f, "Thursday"));
-//        entries.add(new BarEntry(5f, 900f, "Friday"));
-//        entries.add(new BarEntry(6f, 1450f, "Saturday"));
+        List<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(0f, 1500f, "Sunday"));
+        entries.add(new BarEntry(1f, 1000f, "Monday"));
+        entries.add(new BarEntry(2, 500f, "Tuesday"));
+        entries.add(new BarEntry(3, 1000f, "Wednesday"));
+        entries.add(new BarEntry(4f, 2000f, "Thursday"));
+        entries.add(new BarEntry(5f, 900f, "Friday"));
+        entries.add(new BarEntry(6f, 1450f, "Saturday"));
 
         int startColor1 = getResources().getColor(R.color.gradient_start);
         int endColor1 = getResources().getColor(R.color.gradient_end);
@@ -533,13 +546,13 @@ public  class StatisticFragment extends Fragment {
 
 
         List<BarEntry> entries2 = new ArrayList<>();
-//        entries.add(new BarEntry(0f, 100f, "Sunday"));
-//        entries.add(new BarEntry(1f, 10f, "Monday"));
-//        entries.add(new BarEntry(2f, 15f, "Tuesday"));
-//        entries.add(new BarEntry(3f, 60f, "Wednesday"));
-//        entries.add(new BarEntry(4f, 70f, "Thursday"));
-//        entries.add(new BarEntry(5f, 90f, "Friday"));
-//        entries.add(new BarEntry(6f, 67f, "Saturday"));
+        entries.add(new BarEntry(0f, 100f, "Sunday"));
+        entries.add(new BarEntry(1f, 10f, "Monday"));
+        entries.add(new BarEntry(2f, 15f, "Tuesday"));
+        entries.add(new BarEntry(3f, 60f, "Wednesday"));
+        entries.add(new BarEntry(4f, 70f, "Thursday"));
+        entries.add(new BarEntry(5f, 90f, "Friday"));
+        entries.add(new BarEntry(6f, 67f, "Saturday"));
 
         int startColor2 = getResources().getColor(R.color.gradient_start2);
         int endColor2 = getResources().getColor(R.color.gradient_end2);
@@ -574,14 +587,24 @@ public  class StatisticFragment extends Fragment {
 
 
 
-        entries3 = new ArrayList<>();
-//        entries.add(new BarEntry(0f, 200f, "Sunday"));
-//        entries.add(new BarEntry(1f, 300f, "Monday"));
-//        entries.add(new BarEntry(2f, 160f, "Tuesday"));
-//        entries.add(new BarEntry(3f, 100f, "Wednesday"));
-//        entries.add(new BarEntry(4f, 220f, "Thursday"));
-//        entries.add(new BarEntry(5f, 111f, "Friday"));
-//        entries.add(new BarEntry(6f, 89f, "Saturday"));
+        List<BarEntry> entries3 = new ArrayList<>();
+
+        entries.add(new BarEntry(0f, 200f, "Sunday"));
+        entries.add(new BarEntry(1f, 300f, "Monday"));
+        entries.add(new BarEntry(2f, 160f, "Tuesday"));
+        entries.add(new BarEntry(3f, 100f, "Wednesday"));
+        entries.add(new BarEntry(4f, 220f, "Thursday"));
+        entries.add(new BarEntry(5f, 111f, "Friday"));
+        entries.add(new BarEntry(6f, 89f, "Saturday"));
+
+
+        ArrayList<String> labels = new ArrayList<String>();
+        labels.add("January");
+        labels.add("February");
+        labels.add("March");
+        labels.add("April");
+        labels.add("May");
+        labels.add("June");
 
         int startColor2 = getResources().getColor(R.color.gradient_start3);
         int endColor2 = getResources().getColor(R.color.gradient_end3);
@@ -616,13 +639,13 @@ public  class StatisticFragment extends Fragment {
 
 
         List<BarEntry> entries4 = new ArrayList<>();
-//        entries.add(new BarEntry(0f, 3000f, "Sunday"));
-//        entries.add(new BarEntry(1f, 1000f, "Monday"));
-//        entries.add(new BarEntry(2f, 2000f, "Tuesday"));
-//        entries.add(new BarEntry(3f, 1400f, "Wednesday"));
-//        entries.add(new BarEntry(4f, 500f, "Thursday"));
-//        entries.add(new BarEntry(5f, 2000f, "Friday"));
-//        entries.add(new BarEntry(6f, 1679f, "Saturday"));
+        entries.add(new BarEntry(0f, 3000f, "Sunday"));
+        entries.add(new BarEntry(1f, 1000f, "Monday"));
+        entries.add(new BarEntry(2f, 2000f, "Tuesday"));
+        entries.add(new BarEntry(3f, 1400f, "Wednesday"));
+        entries.add(new BarEntry(4f, 500f, "Thursday"));
+        entries.add(new BarEntry(5f, 2000f, "Friday"));
+        entries.add(new BarEntry(6f, 1679f, "Saturday"));
 
         int startColor2 = getResources().getColor(R.color.gradient_start4);
         int endColor2 = getResources().getColor(R.color.gradient_end4);
